@@ -46,8 +46,8 @@ export default function Hero() {
             {/* Description */}
             <p className="text-base sm:text-lg leading-relaxed text-pretty max-w-xl mx-auto lg:mx-0 text-[rgb(var(--muted-foreground))]">
               I transform complex data into actionable insights and build innovative AI solutions. 
-              Passionate about Human-Centric AI, NLP, Computer Vision, and making technology 
-              accessible and impactful.
+              Passionate about NLP, Computer Vision, and making technology 
+              accessible and impactful for everyone.
             </p>
 
             {/* CTA Buttons */}
@@ -90,12 +90,12 @@ export default function Hero() {
 
           {/* Profile Image */}
           <div className="relative flex-shrink-0">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+            <div className="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[28rem]">
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--primary))] to-[rgb(var(--accent))] rounded-full blur-2xl opacity-30 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--primary))] to-[rgb(var(--accent))] rounded-2xl blur-2xl opacity-30 animate-pulse" />
               
-              {/* Image container */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[rgb(var(--card))] shadow-lg">
+              {/* Image container - rounded rectangle */}
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-[rgb(var(--card))] shadow-lg">
                 <Image
                   src="/profile-hero.jpg"
                   alt="Manu Martin"
@@ -103,13 +103,6 @@ export default function Hero() {
                   className="object-cover"
                   priority
                 />
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -bottom-2 -right-2 glass rounded-2xl px-4 py-2 shadow-lg">
-                <p className="text-sm font-semibold text-[rgb(var(--primary))]">
-                  Human-Centric AI
-                </p>
               </div>
             </div>
           </div>
