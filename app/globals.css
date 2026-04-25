@@ -1,0 +1,279 @@
+@import 'tailwindcss';
+
+/* Define animations in @theme block for Tailwind CSS v4 */
+@theme {
+  /* Animation definitions */
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-fade-in-delay: fade-in 0.6s ease-out 0.2s both;
+  --animate-slide-in-from-top-2: slide-in-from-top-2 0.2s ease-out;
+  --animate-slide-in-from-bottom-2: slide-in-from-bottom-2 0.2s ease-out;
+  --animate-slide-in-from-left-2: slide-in-from-left-2 0.2s ease-out;
+  --animate-slide-in-from-right-2: slide-in-from-right-2 0.2s ease-out;
+  --animate-slide-in-from-top-full: slide-in-from-top-full 0.3s ease-out;
+  --animate-slide-in-from-bottom-full: slide-in-from-bottom-full 0.3s ease-out;
+  --animate-slide-in-from-bottom: slide-in-from-bottom 0.3s ease-out;
+  --animate-slide-out-to-bottom: slide-out-to-bottom 0.3s ease-out;
+  --animate-slide-out-to-right-full: slide-out-to-right-full 0.3s ease-out;
+  --animate-fade-in-0: fade-in-0 0.2s ease-out;
+  --animate-fade-out-0: fade-out-0 0.2s ease-out;
+  --animate-fade-out-80: fade-out-80 0.2s ease-out;
+  --animate-zoom-in-95: zoom-in-95 0.2s ease-out;
+  --animate-zoom-out-95: zoom-out-95 0.2s ease-out;
+
+  /* Keyframes */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-top-2 {
+    from {
+      transform: translateY(-0.5rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom-2 {
+    from {
+      transform: translateY(0.5rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-left-2 {
+    from {
+      transform: translateX(-0.5rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-right-2 {
+    from {
+      transform: translateX(0.5rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-top-full {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom-full {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-to-bottom {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes slide-out-to-right-full {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes fade-in-0 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-0 {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out-80 {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes zoom-in-95 {
+    from {
+      transform: scale(0.95);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes zoom-out-95 {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.95);
+    }
+  }
+}
+
+/* Added all required CSS variables for Tailwind and shadcn UI components */
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Georgia', serif;
+  --radius: 0.75rem;
+  
+  /* Default theme (morning) */
+  --background: 255 250 245;
+  --foreground: 51 51 51;
+  --card: 255 245 240;
+  --card-foreground: 51 51 51;
+  --popover: 255 255 255;
+  --popover-foreground: 51 51 51;
+  --primary: 255 140 105;
+  --primary-foreground: 255 255 255;
+  --secondary: 255 200 160;
+  --secondary-foreground: 51 51 51;
+  --muted: 245 235 225;
+  --muted-foreground: 115 115 115;
+  --accent: 255 100 80;
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+  --border: 229 229 229;
+  --input: 229 229 229;
+  --ring: 255 140 105;
+}
+
+/* Theme-specific overrides */
+[data-theme='morning'] {
+  --background: 255 250 245;
+  --foreground: 51 51 51;
+  --card: 255 245 240;
+  --card-foreground: 51 51 51;
+  --primary: 255 140 105;
+  --primary-foreground: 255 255 255;
+  --secondary: 255 200 160;
+  --secondary-foreground: 51 51 51;
+  --accent: 255 100 80;
+  --accent-foreground: 255 255 255;
+  --muted: 245 235 225;
+  --muted-foreground: 115 115 115;
+}
+
+[data-theme='afternoon'] {
+  --background: 245 250 255;
+  --foreground: 34 34 34;
+  --card: 250 252 255;
+  --card-foreground: 34 34 34;
+  --primary: 59 130 246;
+  --primary-foreground: 255 255 255;
+  --secondary: 147 197 253;
+  --secondary-foreground: 34 34 34;
+  --accent: 37 99 235;
+  --accent-foreground: 255 255 255;
+  --muted: 235 240 245;
+  --muted-foreground: 107 114 128;
+}
+
+[data-theme='evening'] {
+  --background: 25 20 30;
+  --foreground: 230 220 210;
+  --card: 35 30 45;
+  --card-foreground: 230 220 210;
+  --primary: 251 146 60;
+  --primary-foreground: 255 255 255;
+  --secondary: 254 215 170;
+  --secondary-foreground: 51 51 51;
+  --accent: 249 115 22;
+  --accent-foreground: 255 255 255;
+  --muted: 45 40 50;
+  --muted-foreground: 161 161 170;
+}
+
+[data-theme='night'] {
+  --background: 10 10 15;
+  --foreground: 220 220 230;
+  --card: 20 20 30;
+  --card-foreground: 220 220 230;
+  --primary: 139 92 246;
+  --primary-foreground: 255 255 255;
+  --secondary: 196 181 253;
+  --secondary-foreground: 10 10 15;
+  --accent: 167 139 250;
+  --accent-foreground: 255 255 255;
+  --muted: 25 25 35;
+  --muted-foreground: 161 161 170;
+}
+
+body {
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: var(--font-sans);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--primary));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent));
+}
