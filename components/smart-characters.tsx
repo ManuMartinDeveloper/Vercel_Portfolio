@@ -697,7 +697,7 @@ export default function SmartCharacters() {
   if (!isClient) return null
 
   return (
-    <div className="fixed bottom-0 right-0 w-[400px] h-[340px] z-50">
+    <div className="fixed bottom-0 right-0 w-[400px] h-[340px] z-50 hidden lg:block">
       <div className="absolute inset-0 pointer-events-none">
         <Canvas shadows>
           <Scene />
