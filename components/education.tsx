@@ -18,7 +18,7 @@ export default function Education() {
         'Deep Learning',
         'Cloud Computing',
       ],
-      thesis: 'Religious Sentiment Analysis using Large Language Models',
+      thesis: 'Sentiment Analysis with Large Language Models',
       highlights: [
         'Internet of Things (IoT) Integration',
         'Computer Vision Applications',
@@ -41,7 +41,7 @@ export default function Education() {
         'Python, Java, C, SQL',
         'Web Development',
       ],
-      project: 'FarmChat - A Chatbot integrated with IoT devices for smart farming solutions',
+      project: 'IoT FarmChat Project - A chatbot integrated with IoT devices for smart farming solutions',
       highlights: [
         'Programming in Python, Java, C, SQL',
         'Data Structures and Algorithms',

@@ -22,28 +22,40 @@ export default function Projects() {
       featured: true,
     },
     {
-      title: "Alphonso - Smart Content Filter",
+      title: "EREC - Research Ethics Clearance Portal",
       description:
-        "An Android accessibility service using on-device AI to analyze screen content in real-time for sensitive imagery. Features smart strike system, lockdown mechanisms, and privacy-focused local processing.",
-      tech: ["Android", "AI/ML", "ONNX Runtime", "Firebase", "NudeNet"],
+        "A full-stack automated clearance engine (Spring WebFlux + React) for Christ University ESPRO, cutting ethics-approval bottlenecks and generating secure PDF certificates automatically on final validation.",
+      tech: ["Java", "Spring WebFlux", "React.js", "Material-UI", "Python"],
+      image: "/projects/erec-clearance-portal.png",
+      category: "Web Development",
+      featured: true,
+    },
+    {
+      title: "Alphonso - On-Device AI Content Filter",
+      description:
+        "An Android content-screening service migrated from NudeNet 320n to YOLO v8, cutting inference latency by ~60% while keeping all processing on-device. Added Isolation Forest anomaly detection for smart lockdown of unusual usage patterns.",
+      note: "github.com/ManuMartinDeveloper/Alphonso",
+      tech: ["Android", "YOLO v8", "ONNX Runtime", "Isolation Forest", "Firebase"],
+      link: "https://github.com/ManuMartinDeveloper/Alphonso",
       image: "/projects/alphonso-content-filter.jpg",
       category: "AI/ML",
       featured: true,
     },
     {
-      title: "Fr. Francis: Catholic Priest Chatbot",
+      title: "Fr. Francis - Catholic Priest AI Chatbot",
       description:
-        "A Streamlit application simulating a chatbot that responds with the wisdom and compassion of a Catholic priest using advanced NLP and LLMs for spiritual guidance.",
+        "A Streamlit assistant built on LangChain + multi-source RAG over the Groq API, delivering sub-second theological query responses across a 50k+ document corpus.",
       tech: ["Python", "Streamlit", "LangChain", "RAG", "Groq API"],
       link: "https://aiofgod.streamlit.app",
       image: "/projects/spiritual-chatbot-interface.jpg",
       category: "AI/ML",
     },
     {
-      title: "Eva - Automated Job Seeking Assistant",
+      title: "Eva - Automated Job-Seeking Assistant",
       description:
-        "An intelligent AI agent that automates job search, helping users find opportunities, optimize resumes, and manage applications efficiently.",
-      tech: ["Python", "NLP", "AI Agents", "LangChain"],
+        "A multi-agent pipeline that scans job boards, scores listings against a resume, and logs pipeline state automatically — reducing manual tracking overhead by 70%.",
+      tech: ["Python", "Multi-Agent", "NLP", "LangChain"],
+      link: "https://github.com/ManuMartinDeveloper/Eva-AI-Job-Butler",
       image: "/projects/job-search-ai-assistant.jpg",
       category: "AI/ML",
     },
@@ -56,10 +68,10 @@ export default function Projects() {
       category: "AI/ML",
     },
     {
-      title: "Smart Blind Stick using YOLO",
+      title: "Smart Blind Stick - YOLO + Raspberry Pi",
       description:
-        "A prototype using YOLO for real-time object detection on Raspberry Pi, assisting visually impaired individuals with audio feedback.",
-      tech: ["Python", "YOLO", "Raspberry Pi", "OpenCV"],
+        "Embedded object-detection (YOLOv5) on Raspberry Pi with an audio feedback loop; navigates obstacles in real time for visually impaired users.",
+      tech: ["Python", "YOLOv5", "Raspberry Pi", "OpenCV"],
       image: "/projects/smart-blind-stick-device.jpg",
       category: "IoT",
     },

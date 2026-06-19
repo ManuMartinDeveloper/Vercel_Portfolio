@@ -1,48 +1,40 @@
 'use client'
 
-import { Code, Wrench, Users, Sparkles } from 'lucide-react'
+import { Code, Wrench, Sparkles } from 'lucide-react'
 
 export default function Skills() {
   const skillCategories = [
     {
-      title: 'Technical Skills',
+      title: 'Languages & Frameworks',
       icon: Code,
       color: 'primary',
       skills: [
-        { category: 'Programming', items: ['Python', 'SQL', 'R', 'JavaScript', 'Java', 'C'] },
-        { category: 'ML/DL', items: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Keras'] },
-        { category: 'Data Analysis', items: ['Pandas', 'NumPy', 'SciPy'] },
-        { category: 'Web Development', items: ['HTML', 'CSS', 'Flask', 'FastAPI', 'Streamlit'] },
-        { category: 'Computer Vision', items: ['OpenCV', 'YOLO', 'Image Processing'] },
-        { category: 'NLP', items: ['Transformers', 'LangChain', 'RAG'] },
-        { category: 'Data Viz', items: ['Matplotlib', 'Seaborn', 'Plotly', 'Tableau', 'Power BI'] },
+        { category: 'Languages', items: ['Python', 'Java', 'JavaScript', 'SQL', 'C'] },
+        { category: 'Backend', items: ['Spring Boot', 'Spring WebFlux', 'Hibernate', 'FastAPI'] },
+        { category: 'Frontend', items: ['React.js', 'Material-UI', 'Streamlit'] },
+        { category: 'ML / DL', items: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'ONNX'] },
       ],
     },
     {
-      title: 'Tools & Platforms',
-      icon: Wrench,
+      title: 'AI / ML Expertise',
+      icon: Sparkles,
       color: 'accent',
       skills: [
-        { category: 'Cloud', items: ['AWS S3', 'EC2', 'Lambda', 'GCP'] },
-        { category: 'Databases', items: ['PostgreSQL', 'MongoDB', 'MySQL'] },
-        { category: 'Version Control', items: ['Git', 'GitHub'] },
-        { category: 'Containers', items: ['Docker'] },
-        { category: 'BI Tools', items: ['Tableau', 'Power BI'] },
-        { category: 'IoT', items: ['Raspberry Pi', 'Arduino', 'Blynk'] },
-        { category: 'NLP Tools', items: ['Hugging Face', 'LangChain'] },
+        { category: 'NLP', items: ['Transformers', 'LangChain', 'RAG Pipelines', 'Prompt Engineering'] },
+        { category: 'Computer Vision', items: ['YOLO', 'OpenCV', 'Image Processing'] },
+        { category: 'Modelling', items: ['Isolation Forest', 'Behaviour Modelling', 'Fine-tuning'] },
+        { category: 'Edge AI', items: ['ONNX Runtime', 'Raspberry Pi Deployment'] },
       ],
     },
     {
-      title: 'Soft Skills',
-      icon: Users,
+      title: 'Infrastructure & Tools',
+      icon: Wrench,
       color: 'primary',
       skills: [
-        { items: ['Problem Solving', 'Communication', 'Teamwork'] },
-        { items: ['Critical Thinking', 'Adaptability', 'Project Management'] },
-        { items: ['Mentorship', 'Leadership', 'Time Management'] },
-        { items: ['Empathy', 'Emotional Intelligence'] },
-        { items: ['Continuous Learning', 'Research'] },
-        { items: ['Ethical AI Practices'] },
+        { category: 'Cloud', items: ['AWS', 'Firebase'] },
+        { category: 'DevOps', items: ['Docker', 'Git'] },
+        { category: 'Data & BI', items: ['Power BI', 'Tableau'] },
+        { category: 'Self-Hosting', items: ['Nextcloud', 'Ubuntu Server'] },
       ],
     },
   ]

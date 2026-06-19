@@ -15,22 +15,22 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Manu Martin | AI Technologist & Data Scientist',
-  description: 'Portfolio of Manu Martin - MSc in Artificial Intelligence and Machine Learning. Specializing in Human-Centric AI, NLP, Computer Vision, and Data Science.',
-  keywords: ['AI', 'Machine Learning', 'Data Science', 'NLP', 'Computer Vision', 'IoT', 'Portfolio', 'Manu Martin'],
+  title: 'Manu Martin | Software Engineer & AI Specialist',
+  description: 'Portfolio of Manu Martin - Software Engineer and AI Specialist based in Australia with full work rights. Java/Spring Boot, Python backends, computer vision, and LLM-powered automation.',
+  keywords: ['Software Engineer', 'AI Specialist', 'Java', 'Spring Boot', 'Python', 'Machine Learning', 'NLP', 'Computer Vision', 'Australia', 'Portfolio', 'Manu Martin'],
   authors: [{ name: 'Manu Martin' }],
   creator: 'Manu Martin',
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    title: 'Manu Martin | AI Technologist & Data Scientist',
-    description: 'Portfolio showcasing AI/ML projects, data science work, and innovative solutions.',
+    locale: 'en_AU',
+    title: 'Manu Martin | Software Engineer & AI Specialist',
+    description: 'Software Engineer and AI Specialist based in Australia. Building reactive backends, computer vision pipelines, and LLM-powered automation.',
     siteName: 'Manu Martin Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Manu Martin | AI Technologist & Data Scientist',
-    description: 'Portfolio showcasing AI/ML projects, data science work, and innovative solutions.',
+    title: 'Manu Martin | Software Engineer & AI Specialist',
+    description: 'Software Engineer and AI Specialist based in Australia. Building reactive backends, computer vision pipelines, and LLM-powered automation.',
   },
   robots: {
     index: true,

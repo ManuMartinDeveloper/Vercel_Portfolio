@@ -146,7 +146,7 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-[rgb(var(--muted-foreground))]">Location</p>
                     <p className="font-medium text-sm">
-                      Alappuzha, Kerala, India
+                      Australia &middot; Full Work Rights
                     </p>
                   </div>
                 </div>
@@ -197,11 +197,11 @@ export default function Contact() {
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-sm font-medium text-[rgb(var(--primary))]">
-                  Available for opportunities
+                  Available across Australia
                 </span>
               </div>
               <p className="text-sm text-[rgb(var(--muted-foreground))]">
-                Open to freelance projects and full-time roles
+                MATES (Subclass 403) visa &mdash; unrestricted work rights for 2 years
               </p>
             </div>
           </div>

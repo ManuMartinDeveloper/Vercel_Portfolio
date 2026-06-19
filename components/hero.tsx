@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(var(--primary))]/10 border border-[rgb(var(--primary))]/20">
               <Sparkles className="w-4 h-4 text-[rgb(var(--primary))]" />
               <span className="text-sm font-medium text-[rgb(var(--primary))]">
-                Open to opportunities
+                Based in Australia &middot; Full Work Rights
               </span>
             </div>
 
@@ -40,15 +40,22 @@ export default function Hero() {
 
             {/* Tagline */}
             <p className="text-lg sm:text-xl lg:text-2xl text-[rgb(var(--muted-foreground))] font-medium">
-              AI Technologist & Data Scientist
+              Software Engineer & AI Specialist
             </p>
 
             {/* Description */}
             <p className="text-base sm:text-lg leading-relaxed text-pretty max-w-xl mx-auto lg:mx-0 text-[rgb(var(--muted-foreground))]">
-              I transform complex data into actionable insights and build innovative AI solutions. 
-              Passionate about NLP, Computer Vision, and making technology 
-              accessible and impactful for everyone.
+              I connect production-grade ML models to Java/Spring Boot and Python backends, 
+              shipping reactive REST APIs, computer vision pipelines on edge hardware, and 
+              LLM-powered automation that cuts manual workload by 70&ndash;90%.
             </p>
+
+            {/* Visa Status */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[rgb(var(--accent))]/10 border border-[rgb(var(--accent))]/20">
+              <span className="text-sm font-medium text-[rgb(var(--accent))]">
+                Visa: MATES (Subclass 403) &mdash; Unrestricted Work Rights, 2 Years
+              </span>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
