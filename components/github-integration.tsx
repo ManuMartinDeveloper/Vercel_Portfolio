@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import { Github, Star, GitFork, Calendar, Code2 } from "lucide-react"
+import { Github, Star, GitFork, Code2, ArrowUpRight, Activity } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface GitHubStats {
@@ -12,18 +11,19 @@ interface GitHubStats {
 }
 
 export default function GitHubIntegration() {
-  const [stats, setStats] = useState<GitHubStats>({
+  const stats: GitHubStats = {
     totalRepos: 11,
     totalStars: 2,
     totalForks: 0,
     contributions: 5,
-  })
+  }
 
   const featuredRepos = [
     {
       name: "Alphonso-Content-Filter",
       description: "Android accessibility service with on-device AI for smart content filtering",
       language: "Java",
+      languageColor: "#B07219",
       stars: 8,
       forks: 2,
       url: "https://github.com/ManuMartinDeveloper/alphonso",
@@ -32,6 +32,7 @@ export default function GitHubIntegration() {
       name: "Fr-Francis-Chatbot",
       description: "Catholic spiritual guidance chatbot using advanced NLP and RAG",
       language: "Python",
+      languageColor: "#3572A5",
       stars: 15,
       forks: 4,
       url: "https://github.com/ManuMartinDeveloper/fr-francis",
@@ -40,6 +41,7 @@ export default function GitHubIntegration() {
       name: "Eva-Job-Agent",
       description: "Automated job seeking assistant powered by AI agents",
       language: "Python",
+      languageColor: "#3572A5",
       stars: 12,
       forks: 3,
       url: "https://github.com/ManuMartinDeveloper/eva",
@@ -48,6 +50,7 @@ export default function GitHubIntegration() {
       name: "Smart-Blind-Stick",
       description: "YOLO-based object detection system for assistive technology",
       language: "Python",
+      languageColor: "#3572A5",
       stars: 7,
       forks: 2,
       url: "https://github.com/ManuMartinDeveloper/smart-stick",
@@ -55,62 +58,86 @@ export default function GitHubIntegration() {
   ]
 
   return (
-    <section id="github" className="relative py-20 px-4 bg-[rgb(var(--muted))]/30 overflow-hidden">
-      <div className="container max-w-7xl relative z-10">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Github className="w-10 h-10 text-[rgb(var(--primary))]" />
-          <h2 className="text-4xl md:text-5xl font-bold text-center">GitHub Activity</h2>
+    <section id="github" className="section-padding px-6">
+      <div className="container max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(var(--primary))]/10 border border-[rgb(var(--primary))]/20 mb-4">
+            <Github className="w-4 h-4 text-[rgb(var(--primary))]" />
+            <span className="text-sm font-medium text-[rgb(var(--primary))]">Open Source</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+            GitHub Activity
+          </h2>
+          <p className="mt-4 text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
+            Explore my open-source contributions and featured repositories
+          </p>
         </div>
-        <p className="text-center mb-12 text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
-          Explore my open-source contributions and featured projects
-        </p>
 
-        {/* GitHub Stats */}
+        {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-[rgb(var(--card))] rounded-xl p-6 text-center shadow-lg border border-[rgb(var(--primary))]/10">
-            <Code2 className="w-8 h-8 mx-auto mb-2 text-[rgb(var(--primary))]" />
-            <div className="text-3xl font-bold mb-1">{stats.totalRepos}</div>
-            <div className="text-sm text-[rgb(var(--muted-foreground))]">Repositories</div>
-          </div>
-          <div className="bg-[rgb(var(--card))] rounded-xl p-6 text-center shadow-lg border border-[rgb(var(--primary))]/10">
-            <Star className="w-8 h-8 mx-auto mb-2 text-[rgb(var(--accent))]" />
-            <div className="text-3xl font-bold mb-1">{stats.totalStars}</div>
-            <div className="text-sm text-[rgb(var(--muted-foreground))]">Stars</div>
-          </div>
-          <div className="bg-[rgb(var(--card))] rounded-xl p-6 text-center shadow-lg border border-[rgb(var(--primary))]/10">
-            <GitFork className="w-8 h-8 mx-auto mb-2 text-[rgb(var(--primary))]" />
-            <div className="text-3xl font-bold mb-1">{stats.totalForks}</div>
-            <div className="text-sm text-[rgb(var(--muted-foreground))]">Forks</div>
-          </div>
-          <div className="bg-[rgb(var(--card))] rounded-xl p-6 text-center shadow-lg border border-[rgb(var(--primary))]/10">
-            <Calendar className="w-8 h-8 mx-auto mb-2 text-[rgb(var(--accent))]" />
-            <div className="text-3xl font-bold mb-1">{stats.contributions}</div>
-            <div className="text-sm text-[rgb(var(--muted-foreground))]">Contributions</div>
-          </div>
+          {[
+            { icon: Code2, label: "Repositories", value: stats.totalRepos, color: "primary" },
+            { icon: Star, label: "Stars Earned", value: stats.totalStars, color: "accent" },
+            { icon: GitFork, label: "Forks", value: stats.totalForks, color: "primary" },
+            { icon: Activity, label: "Contributions", value: stats.contributions, color: "accent" },
+          ].map((stat, index) => {
+            const Icon = stat.icon
+            return (
+              <div
+                key={index}
+                className="bg-[rgb(var(--card))] rounded-2xl p-5 text-center border border-[rgb(var(--border))] shadow-sm card-hover"
+              >
+                <div className={`inline-flex p-3 rounded-xl mb-3 ${
+                  stat.color === "accent" 
+                    ? "bg-[rgb(var(--accent))]/10" 
+                    : "bg-[rgb(var(--primary))]/10"
+                }`}>
+                  <Icon className={`w-6 h-6 ${
+                    stat.color === "accent" 
+                      ? "text-[rgb(var(--accent))]" 
+                      : "text-[rgb(var(--primary))]"
+                  }`} />
+                </div>
+                <div className="text-3xl font-bold">{stat.value}</div>
+                <div className="text-sm text-[rgb(var(--muted-foreground))] mt-1">{stat.label}</div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Featured Repositories */}
         <div>
-          <h3 className="text-2xl font-bold mb-6 text-center">Featured Repositories</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <h3 className="text-xl font-bold mb-6 text-center">Featured Repositories</h3>
+          <div className="grid md:grid-cols-2 gap-4">
             {featuredRepos.map((repo, index) => (
               <a
                 key={index}
                 href={repo.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[rgb(var(--card))] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10"
+                className="group bg-[rgb(var(--card))] rounded-2xl p-5 border border-[rgb(var(--border))] shadow-sm card-hover block"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <h4 className="text-lg font-bold group-hover:text-[rgb(var(--primary))] transition-colors">
-                    {repo.name}
-                  </h4>
-                  <Github className="w-5 h-5 text-[rgb(var(--muted-foreground))] group-hover:text-[rgb(var(--primary))] transition-colors" />
+                  <div className="flex items-center gap-2">
+                    <Github className="w-5 h-5 text-[rgb(var(--muted-foreground))]" />
+                    <h4 className="font-bold group-hover:text-[rgb(var(--primary))] transition-colors">
+                      {repo.name}
+                    </h4>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-[rgb(var(--muted-foreground))] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <p className="text-sm text-[rgb(var(--muted-foreground))] mb-4 leading-relaxed">{repo.description}</p>
-                <div className="flex items-center gap-4 text-sm">
-                  <span className="flex items-center gap-1">
-                    <div className="w-3 h-3 rounded-full bg-[rgb(var(--primary))]" />
+                
+                <p className="text-sm text-[rgb(var(--muted-foreground))] mb-4 leading-relaxed line-clamp-2">
+                  {repo.description}
+                </p>
+                
+                <div className="flex items-center gap-4 text-sm text-[rgb(var(--muted-foreground))]">
+                  <span className="flex items-center gap-1.5">
+                    <span 
+                      className="w-3 h-3 rounded-full" 
+                      style={{ backgroundColor: repo.languageColor }}
+                    />
                     {repo.language}
                   </span>
                   <span className="flex items-center gap-1">
@@ -127,11 +154,17 @@ export default function GitHubIntegration() {
           </div>
         </div>
 
+        {/* CTA */}
         <div className="text-center mt-12">
-          <Button asChild size="lg" className="bg-[rgb(var(--primary))] hover:bg-[rgb(var(--primary))]/90">
+          <Button
+            asChild
+            size="lg"
+            className="rounded-full bg-[rgb(var(--primary))] hover:bg-[rgb(var(--accent))] text-white px-8"
+          >
             <a href="https://github.com/ManuMartinDeveloper" target="_blank" rel="noopener noreferrer">
               <Github className="w-5 h-5 mr-2" />
-              View Full GitHub Profile
+              View Full Profile
+              <ArrowUpRight className="w-4 h-4 ml-2" />
             </a>
           </Button>
         </div>

@@ -1,3 +1,4 @@
+import Navigation from "@/components/navigation"
 import Hero from "@/components/hero"
 import Education from "@/components/education"
 import Skills from "@/components/skills"
@@ -6,13 +7,12 @@ import Experience from "@/components/experience"
 import Projects from "@/components/projects"
 import GitHubIntegration from "@/components/github-integration"
 import Contact from "@/components/contact"
-import MobileNav from "@/components/mobile-nav"
 import SmartCharacters from "@/components/smart-characters"
 
 export default function Home() {
   return (
     <>
-      <MobileNav />
+      <Navigation />
       <SmartCharacters />
       <main className="min-h-screen">
         <Hero />

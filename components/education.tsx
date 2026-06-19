@@ -1,4 +1,6 @@
-import { GraduationCap } from 'lucide-react'
+'use client'
+
+import { GraduationCap, Calendar, MapPin, BookOpen, Award } from 'lucide-react'
 
 export default function Education() {
   const education = [
@@ -16,20 +18,13 @@ export default function Education() {
         'Deep Learning',
         'Cloud Computing',
       ],
-      thesis: 'Religious Sentiment Analysis using Large Language Models',
-      skills: [
+      thesis: 'Sentiment Analysis with Large Language Models',
+      highlights: [
         'Internet of Things (IoT) Integration',
         'Computer Vision Applications',
-        'Speech Recognition and Processing',
-        'Natural Language Processing [LLMs, LangChain, RAG, Finetuning, Deployment]',
+        'Natural Language Processing',
         'AI Model Training and Deployment',
-        'Data Analysis and Visualization',
-        'Python Programming',
-        'Power BI and Tableau for Data Visualization',
-        'Streamlit and FastAPI for Web Applications',
-        'Cloud Computing (AWS, GCP)',
         'AI Ethics and Human-Centric Design',
-        'Research Methodologies in AI',
       ],
     },
     {
@@ -42,99 +37,125 @@ export default function Education() {
         'Data Structures',
         'Algorithms',
         'Database Management',
-        'Microprocessor, Microcontroller and Interfacing',
-        'Programming in Python, Java, C, SQL',
-        'Web Development (HTML, CSS, Flask)',
-        'Internet of Things (IoT)',
+        'Microprocessor',
+        'Python, Java, C, SQL',
+        'Web Development',
       ],
-      project: 'FarmChat - A Chatbot integrated with IoT devices for smart farming solutions',
-      skills: [
+      project: 'IoT FarmChat Project - A chatbot integrated with IoT devices for smart farming solutions',
+      highlights: [
         'Programming in Python, Java, C, SQL',
         'Data Structures and Algorithms',
         'Database Management Systems',
-        'Web Development (HTML, CSS, Flask)',
         'IoT Device Integration',
-        'Basic Machine Learning Concepts',
-        'Team Collaboration and Project Management',
-        'Mentorship and Leadership Skills',
+        'Team Leadership',
       ],
     },
   ]
 
   return (
-    <section id="education" className="py-20 px-4">
-      <div className="container max-w-7xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-          Education
-        </h2>
+    <section id="education" className="section-padding px-6">
+      <div className="container max-w-5xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(var(--primary))]/10 border border-[rgb(var(--primary))]/20 mb-4">
+            <GraduationCap className="w-4 h-4 text-[rgb(var(--primary))]" />
+            <span className="text-sm font-medium text-[rgb(var(--primary))]">Academic Background</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+            Education
+          </h2>
+          <p className="mt-4 text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
+            A strong foundation in computer science and specialized expertise in AI/ML
+          </p>
+        </div>
 
+        {/* Timeline */}
         <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[rgb(var(--primary))]/30" />
+          {/* Timeline line - desktop only */}
+          <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[rgb(var(--primary))] via-[rgb(var(--primary))]/50 to-transparent" />
 
-          <div className="space-y-16">
+          <div className="space-y-8">
             {education.map((edu, index) => (
-              <div
-                key={index}
-                className={`relative grid md:grid-cols-2 gap-8 ${
-                  index % 2 === 0 ? 'md:text-right' : 'md:flex-row-reverse'
-                }`}
-              >
+              <div key={index} className="relative flex gap-6 md:gap-12">
                 {/* Timeline dot */}
-                <div className="hidden md:block absolute left-1/2 top-8 w-6 h-6 bg-[rgb(var(--primary))] rounded-full border-4 border-background -translate-x-1/2 z-10">
-                  <div className="absolute inset-0 bg-[rgb(var(--primary))] rounded-full animate-ping opacity-75" />
+                <div className="hidden md:flex flex-col items-center">
+                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-[rgb(var(--card))] border border-[rgb(var(--primary))]/20 flex items-center justify-center shadow-sm">
+                    <GraduationCap className="w-7 h-7 text-[rgb(var(--primary))]" />
+                  </div>
                 </div>
 
-                <div className={index % 2 === 0 ? 'md:pr-12' : 'md:col-start-2 md:pl-12 md:text-left'}>
-                  <div className="bg-[rgb(var(--card))] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-[rgb(var(--primary))]/10">
-                    <div className="flex items-start gap-3 mb-4">
-                      <GraduationCap className="w-6 h-6 text-[rgb(var(--primary))] flex-shrink-0 mt-1" />
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-balance mb-2">{edu.degree}</h3>
-                        <p className="text-lg font-medium text-[rgb(var(--primary))]">{edu.institution}</p>
-                        <p className="text-sm text-muted-foreground">{edu.location}</p>
-                        <p className="text-sm font-medium mt-1">{edu.period}</p>
-                      </div>
+                {/* Card */}
+                <div className="flex-1 bg-[rgb(var(--card))] rounded-2xl border border-[rgb(var(--border))] p-6 sm:p-8 shadow-sm card-hover">
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-balance leading-tight">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-lg font-semibold text-[rgb(var(--primary))] mt-1">
+                        {edu.institution}
+                      </p>
                     </div>
-
-                    <div className="space-y-4 text-left">
-                      <div>
-                        <h4 className="font-semibold mb-2 text-[rgb(var(--accent))]">Relevant Coursework:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {edu.coursework.map((course, i) => (
-                            <span
-                              key={i}
-                              className="text-sm px-3 py-1 bg-[rgb(var(--muted))] rounded-full"
-                            >
-                              {course}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {edu.thesis && (
-                        <div>
-                          <h4 className="font-semibold mb-1 text-[rgb(var(--accent))]">Thesis/Project:</h4>
-                          <p className="text-sm">{edu.thesis}</p>
-                        </div>
-                      )}
-
-                      {edu.project && (
-                        <div>
-                          <h4 className="font-semibold mb-1 text-[rgb(var(--accent))]">Project:</h4>
-                          <p className="text-sm">{edu.project}</p>
-                        </div>
-                      )}
-
-                      <div>
-                        <h4 className="font-semibold mb-2 text-[rgb(var(--accent))]">Major Skills Developed:</h4>
-                        <ul className="text-sm space-y-1 list-disc list-inside">
-                          {edu.skills.slice(0, 6).map((skill, i) => (
-                            <li key={i}>{skill}</li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div className="flex flex-wrap gap-3 text-sm text-[rgb(var(--muted-foreground))]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[rgb(var(--muted))]">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {edu.period}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[rgb(var(--muted))]">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {edu.location}
+                      </span>
                     </div>
+                  </div>
+
+                  {/* Coursework */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <BookOpen className="w-4 h-4 text-[rgb(var(--primary))]" />
+                      <h4 className="font-semibold text-sm uppercase tracking-wider text-[rgb(var(--muted-foreground))]">
+                        Coursework
+                      </h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.coursework.map((course, i) => (
+                        <span
+                          key={i}
+                          className="text-sm px-3 py-1.5 rounded-full bg-[rgb(var(--primary))]/10 text-[rgb(var(--primary))] font-medium"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Thesis/Project */}
+                  {(edu.thesis || edu.project) && (
+                    <div className="mb-6 p-4 rounded-xl bg-[rgb(var(--muted))]/50 border border-[rgb(var(--border))]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Award className="w-4 h-4 text-[rgb(var(--accent))]" />
+                        <h4 className="font-semibold text-sm text-[rgb(var(--accent))]">
+                          {edu.thesis ? 'Thesis' : 'Capstone Project'}
+                        </h4>
+                      </div>
+                      <p className="text-sm leading-relaxed">
+                        {edu.thesis || edu.project}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Key Skills */}
+                  <div>
+                    <h4 className="font-semibold text-sm uppercase tracking-wider text-[rgb(var(--muted-foreground))] mb-3">
+                      Key Skills Developed
+                    </h4>
+                    <ul className="grid sm:grid-cols-2 gap-2">
+                      {edu.highlights.map((skill, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[rgb(var(--primary))] mt-1.5 flex-shrink-0" />
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
