@@ -1,33 +1,42 @@
 "use client"
 
-import { Award, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Award } from "lucide-react"
 
 /**
- * Certifications — Credly badges.
- *
- * TODO: Replace the placeholder values below with your real Credly badge data.
- *  - `title`   : the certification name
- *  - `issuer`  : the issuing organisation
- *  - `badgeId` : the id from your badge URL — credly.com/badges/<badgeId>
- *  - `image`   : the badge image URL (open the badge on Credly, right-click the
- *                image → "Copy image address", e.g. https://images.credly.com/size/220x220/images/<uuid>/image.png)
- *
- * Prefer the official Credly embed instead of image cards? Swap each card body
- * for a div and load the embed script once:
- *   <div data-iframe-width="150" data-iframe-height="270"
- *        data-share-badge-id={cert.badgeId}
- *        data-share-badge-host="https://www.credly.com" />
- *   <Script async src="//cdn.credly.com/assets/utilities/embed.js" />   // from next/script
+ * Certifications — verified Credly badges.
+ * Images and verification links come straight from each badge's public Credly page.
  */
-const CREDLY_PROFILE = "https://www.credly.com/users/manu-martin"
-
 const certifications = [
-  { title: "Certification 1", issuer: "Issuing Organisation", badgeId: "REPLACE_WITH_BADGE_ID_1", image: "" },
-  { title: "Certification 2", issuer: "Issuing Organisation", badgeId: "REPLACE_WITH_BADGE_ID_2", image: "" },
-  { title: "Certification 3", issuer: "Issuing Organisation", badgeId: "REPLACE_WITH_BADGE_ID_3", image: "" },
-  { title: "Certification 4", issuer: "Issuing Organisation", badgeId: "REPLACE_WITH_BADGE_ID_4", image: "" },
-  { title: "Certification 5", issuer: "Issuing Organisation", badgeId: "REPLACE_WITH_BADGE_ID_5", image: "" },
+  {
+    title: "Analyze Sentiment with Natural Language API",
+    issuer: "Google Cloud",
+    image: "https://images.credly.com/images/bd687b0c-3959-4e06-b511-6623e32b8fdb/linkedin_thumb_image.png",
+    url: "https://www.credly.com/badges/56c3b570-5b93-4eeb-96b1-669abc59b480/public_url",
+  },
+  {
+    title: "AWS Academy Cloud Foundations",
+    issuer: "Amazon Web Services",
+    image: "https://images.credly.com/images/e3541a0c-dd4a-4820-8052-5001006efc85/linkedin_thumb_blob",
+    url: "https://www.credly.com/badges/46a31547-3437-4b2e-a2e9-8609da015640/public_url",
+  },
+  {
+    title: "Introduction to Modern AI",
+    issuer: "Cisco Networking Academy",
+    image: "https://images.credly.com/images/e2d12302-10f9-40d4-8ff1-066a7008b61d/linkedin_thumb_blob",
+    url: "https://www.credly.com/badges/6a9ce5cc-56d3-46a8-9d95-ec7a803c9e2b/public_url",
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    image: "https://images.credly.com/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/linkedin_thumb_I2CS__1_.png",
+    url: "https://www.credly.com/badges/7a201c63-808e-4e13-89e5-c57ddd678d49/public_url",
+  },
+  {
+    title: "Introduction to Internet of Things (IoT)",
+    issuer: "Cisco Networking Academy",
+    image: "https://images.credly.com/images/fce226c2-0f13-4e17-b60c-24fa6ffd88cb/linkedin_thumb_Intro2IoT.png",
+    url: "https://www.credly.com/badges/3c645de8-77d8-4dfe-9592-55152994c35e/public_url",
+  },
 ]
 
 export default function Certifications() {
@@ -39,49 +48,33 @@ export default function Certifications() {
           <h2 className="text-4xl md:text-5xl font-bold text-center">Certifications</h2>
         </div>
         <p className="text-center mb-12 text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
-          Verified credentials and badges from Credly.
+          Verified credentials and badges from Credly. Click any badge to view its verification.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {certifications.map((cert, index) => {
-            const badgeUrl = `https://www.credly.com/badges/${cert.badgeId}`
-            return (
-              <a
-                key={index}
-                href={cert.badgeId.startsWith("REPLACE_WITH") ? CREDLY_PROFILE : badgeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center text-center bg-[rgb(var(--card))] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10"
-              >
-                <div className="w-24 h-24 mb-4 flex items-center justify-center rounded-full bg-[rgb(var(--primary))]/10">
-                  {cert.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={cert.image} alt={cert.title} className="w-24 h-24 object-contain" />
-                  ) : (
-                    <Award className="w-10 h-10 text-[rgb(var(--primary))]" />
-                  )}
-                </div>
-                <h3 className="font-semibold text-sm leading-snug group-hover:text-[rgb(var(--primary))] transition-colors">
-                  {cert.title}
-                </h3>
-                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">{cert.issuer}</p>
-              </a>
-            )
-          })}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="border-[rgb(var(--primary))]/20 hover:border-[rgb(var(--primary))]/40"
-          >
-            <a href={CREDLY_PROFILE} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-5 h-5 mr-2" />
-              View all badges on Credly
+          {certifications.map((cert, index) => (
+            <a
+              key={index}
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center text-center bg-[rgb(var(--card))] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10"
+            >
+              <div className="w-28 h-28 mb-4 flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={cert.image}
+                  alt={`${cert.title} badge`}
+                  className="w-28 h-28 object-contain group-hover:scale-105 transition-transform"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="font-semibold text-sm leading-snug group-hover:text-[rgb(var(--primary))] transition-colors">
+                {cert.title}
+              </h3>
+              <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">{cert.issuer}</p>
             </a>
-          </Button>
+          ))}
         </div>
       </div>
     </section>

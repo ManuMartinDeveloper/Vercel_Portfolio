@@ -13,24 +13,42 @@ export default function Experience() {
       company: 'Iolite Technologies',
       period: 'Apr 2026 - Present',
       description: [
-        'Joined Iolite Technologies as an Associate Software Engineer, contributing to the design, development, and delivery of production software. I collaborate across the engineering team to build reliable, scalable solutions while continuing to apply my background in AI and data-driven development.',
+        'Contributing to the design, development, and delivery of production software within the Iolite Technologies & Christ University ecosystem in Bengaluru, working across Java/Spring Boot backends and React frontends.',
+      ],
+      responsibilities: [
+        'Designed and developed the EREC Service module in Java, Spring Boot, and Spring WebFlux — analysed requirements with stakeholders, wrote non-blocking REST APIs, and delivered tested, documented code that replaced a manual workflow across multiple university campuses.',
+        'Participated in code reviews with senior engineers, applying and giving structured feedback to improve consistency and quality across the shared codebase.',
+        'Built the Reviewer Pool Setup UI in React.js + Material-UI to specification, coordinating with product stakeholders to ensure the frontend met operational requirements before release.',
+        'Integrated a Python generative AI microservice for PDF parsing and compliance checks — wrote unit tests, supported QA, and documented the integration for team handover.',
+        'Contributed to Agile ceremonies including sprint planning and retrospectives, and maintained technical documentation throughout each delivery cycle.',
       ],
     },
     {
-      title: 'Freelancing',
-      company: 'Self-employed / Freelance',
-      period: 'May 2025 - Present',
+      title: 'Software Developer (Contract)',
+      company: 'Christ University',
+      period: 'Jan 2026 - Apr 2026',
       description: [
-        'Leveraging my expertise in Human-Centric AI, NLP, and Data Science, I actively engage in freelance projects to deliver innovative and impactful solutions. My work focuses on translating complex data into actionable insights and building intelligent applications that address real-world challenges, particularly those with a social or humanitarian impact.',
+        'Delivered Python-based ML and LLM integrations within an existing ERP platform, owning each feature from requirement analysis through to production deployment.',
       ],
-      project: {
-        title: 'Smart Medicine Kit with Gesture Recognition',
-        details: [
-          'Developed a prototype smart medicine kit that uses Computer Vision and gesture recognition to confirm patients are taking their medication. This system aims to improve medication adherence, especially for elderly patients or those requiring precise dosage monitoring, thereby enhancing patient safety and care.',
-          'Implemented real-time image processing and a custom gesture classification model (e.g., using OpenCV and TensorFlow/Keras) to accurately identify medication-taking actions.',
-          'Impact: Designed to provide peace of mind to caregivers and empower patients through automated, non-intrusive monitoring, demonstrating a practical application of AI on humanitarian grounds.',
-        ],
-      },
+      responsibilities: [
+        'Developed Python-based ML integrations within an existing ERP platform, automating data-entry workflows and reducing manual processing by over 90% — owned the full cycle from requirement analysis to production deployment.',
+        'Designed and tested prompt structures for GPT-based LLM APIs, iterating based on output quality and stakeholder feedback.',
+        'Maintained version-controlled codebases using Git throughout, with clear commit history and branch management practices.',
+        'Applied rapid prototyping (vibe coding) to quickly develop, test, and iterate on core AI features based on user feedback — compressing development cycles significantly.',
+        'Delivered internal knowledge-sharing sessions on LLM tooling, AI-assisted development, and prompt engineering to upskill team members.',
+      ],
+    },
+    {
+      title: 'Freelance Software Developer',
+      company: 'Self-employed',
+      period: 'May 2025 - Jan 2026',
+      description: [
+        'Delivered end-to-end Python, computer-vision, and NLP applications for multiple clients, taking each project from requirements through to a tested, deployed solution.',
+      ],
+      responsibilities: [
+        'Built and deployed a Python + OpenCV + ONNX real-time inference application on Raspberry Pi (<200 ms per frame), and delivered NLP-focused applications for multiple clients end-to-end.',
+        'Designed image-processing pipelines for edge gesture-classification models, optimising CPU utilisation on constrained hardware.',
+      ],
     },
     {
       title: 'Conversation Designer Intern',

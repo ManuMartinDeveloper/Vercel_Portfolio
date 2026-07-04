@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ExternalLink, FileText, Star } from "lucide-react"
+import { ExternalLink, FileText, Star, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import PDFViewer from "./pdf-viewer"
@@ -12,13 +12,14 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "EREC",
+      title: "EREC — Research Ethical Clearance Portal",
       description:
-        "A featured flagship project — an end-to-end platform combining AI and modern web technologies to deliver an intelligent, user-centric experience. EREC showcases production-grade engineering across the full stack, from data processing and model integration to a polished front-end interface.",
-      tech: ["Next.js", "React", "TypeScript", "AI/ML", "Python"],
+        "A production Java + React system in active institutional use across multiple university campuses, replacing a manual research-ethics clearance workflow. Built the EREC Service module with non-blocking REST APIs (Spring Boot + Spring WebFlux), a React + Material-UI reviewer interface, and a Python generative-AI microservice for automated PDF parsing and compliance checks. Delivered collaboratively with Git version control, structured code reviews, and thorough testing before each release.",
+      tech: ["Java", "Spring Boot", "Spring WebFlux", "React.js", "Material-UI", "Python", "REST APIs"],
       image: "/projects/erec.jpg",
-      category: "AI/ML",
+      category: "Web Development",
       featured: true,
+      github: "https://github.com/ManuMartinDeveloper/EREC",
     },
     {
       title: "My Online Portfolio",
@@ -198,6 +199,19 @@ export default function Projects() {
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                         View Live Demo
+                      </a>
+                    </Button>
+                  )}
+
+                  {project.github && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full group/btn border-[rgb(var(--primary))]/20 hover:border-[rgb(var(--primary))]/40 bg-transparent"
+                    >
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        View Code
                       </a>
                     </Button>
                   )}
