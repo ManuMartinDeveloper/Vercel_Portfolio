@@ -22,20 +22,19 @@ export default function Hero() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Human-Centric AI | NLP & Data Science | Lifelong Learner
+                Software Engineer & AI Specialist | Java + Python | LLMs & Edge AI
               </p>
             </div>
-            
+
             <p className="text-lg leading-relaxed text-pretty max-w-2xl">
-              I'm an AI Technologist, passionate about transforming complex data into actionable insights and innovative solutions. 
-              My journey is driven by a profound fascination with Artificial Intelligence's capacity to automate, enhance human capabilities, 
-              and genuinely make a difference. With hands-on experience spanning IoT, Computer Vision, Natural Language Processing, 
-              and advanced AI Model Training (including expertise in LLMs like Gemini and GPT), I thrive on technical challenges.
+              I&apos;m a Software Engineer and AI Specialist with hands-on experience connecting production-grade ML models to
+              Java/Spring Boot and Python backends. I&apos;ve built and shipped reactive REST APIs, computer vision pipelines on
+              edge hardware, and LLM-powered automation that reduced manual workload by 70&ndash;90%.
             </p>
 
             <p className="text-lg leading-relaxed text-pretty max-w-2xl">
-              Explore my work below to see how I combine diverse knowledge with a commitment to ethical, human-centric AI, 
-              delivering cutting-edge solutions that are intuitive and impactful.
+              5 production AI systems shipped &bull; 90%+ manual workload automated &bull; 2 LLM assistants in active use &bull;
+              Edge AI on constrained hardware. Explore my work below to see how I own full-stack features end-to-end.
             </p>
 
             <Button

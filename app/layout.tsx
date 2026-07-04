@@ -5,9 +5,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Manu Martin - AI Technologist & Data Scientist',
-  description: 'Portfolio of Manu Martin - MSc in Artificial Intelligence and Machine Learning. Specializing in Human-Centric AI, NLP, Computer Vision, and Data Science.',
-  keywords: ['AI', 'Machine Learning', 'Data Science', 'NLP', 'Computer Vision', 'IoT', 'Portfolio'],
+  title: 'Manu Martin - Software Engineer & AI Specialist',
+  description: 'Portfolio of Manu Martin - Software Engineer and AI Specialist connecting production-grade ML models to Java/Spring Boot and Python backends. Reactive REST APIs, edge computer vision, and LLM-powered automation.',
+  keywords: ['Software Engineer', 'AI', 'Machine Learning', 'Java', 'Spring Boot', 'Python', 'NLP', 'Computer Vision', 'LLM', 'Portfolio'],
     generator: 'v0.app'
 }
 

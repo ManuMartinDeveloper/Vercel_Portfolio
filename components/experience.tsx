@@ -9,34 +9,57 @@ export default function Experience() {
 
   const experiences = [
     {
-      title: 'Freelancing',
-      company: 'MR Technologies',
-      period: 'May 2025 - Present',
+      title: 'Associate Software Engineer',
+      company: 'Iolite Technologies — Bengaluru, India',
+      period: 'Apr 2026 - Present',
       description: [
-        'Leveraging my expertise in Human-Centric AI, NLP, and Data Science, I actively engage in freelance projects to deliver innovative and impactful solutions. My work focuses on translating complex data into actionable insights and building intelligent applications that address real-world challenges, particularly those with a social or humanitarian impact.',
+        'Part of the Iolite Technologies & Christ University ecosystem, building production software that replaces manual institutional workflows with modern, reactive systems.',
       ],
-      project: {
-        title: 'Smart Medicine Kit with Gesture Recognition',
-        details: [
-          'Developed a prototype smart medicine kit that uses Computer Vision and gesture recognition to confirm patients are taking their medication. This system aims to improve medication adherence, especially for elderly patients or those requiring precise dosage monitoring, thereby enhancing patient safety and care.',
-          'Implemented real-time image processing and a custom gesture classification model (e.g., using OpenCV and TensorFlow/Keras) to accurately identify medication-taking actions.',
-          'Impact: Designed to provide peace of mind to caregivers and empower patients through automated, non-intrusive monitoring, demonstrating a practical application of AI on humanitarian grounds.',
-        ],
-      },
+      responsibilities: [
+        'Co-built the EREC Service module using Java, Spring Boot, and Spring WebFlux — replacing a manual paper-based ethics-clearance workflow used across Christ University campuses, cutting average approval time from ~5 days to same-day for most submissions.',
+        'Developed non-blocking reactive REST APIs (WebClient) to handle concurrent research submission spikes without degrading response times.',
+        'Built the Reviewer Pool Setup UI in React.js + Material-UI, giving admins dynamic workload controls that kept SLA breaches at zero across the first two submission windows.',
+        'Integrated a Python generative AI microservice for automatic PDF parsing, questionnaire pre-population, and checklist compliance checks — removing ~3 hours of per-submission manual review.',
+        'Ran pair-programming sessions for two junior developers transitioning to reactive programming and LLM integrations, reducing their ramp-up time by roughly half.',
+      ],
+    },
+    {
+      title: 'AI Developer',
+      company: 'Christ University Contract — Bengaluru, India',
+      period: 'Jan 2026 - Apr 2026',
+      description: [
+        'Contracted to automate university operations with practical, production-grade AI tooling built around fine-tuned ML models and GPT-based LLMs.',
+      ],
+      responsibilities: [
+        'Automated repetitive ERP data-entry workflows using fine-tuned ML models on custom university datasets, reducing required manual intervention by over 90%.',
+        'Designed and optimised prompt structures for GPT-based LLMs to deliver contextually accurate outputs within the university\u2019s compliance domain.',
+        'Led internal tech discussions and pair-programming sessions on LLM alignment and prompt engineering to upskill peers on practical AI tooling.',
+      ],
+    },
+    {
+      title: 'Freelance AI Technologist & Data Scientist',
+      company: 'Self-employed',
+      period: 'May 2025 - Jan 2026',
+      description: [
+        'Delivered end-to-end AI solutions for multiple clients — from computer vision on edge hardware to NLP applications — owning data cleaning, model development, optimisation, and deployment.',
+      ],
+      responsibilities: [
+        'Built a vision-based assistive medication-compliance system using OpenCV and ONNX, deployed to a Raspberry Pi; achieved real-time inference at <200 ms per frame for a high-risk patient pilot.',
+        'Designed and optimised image-processing pipelines for edge gesture-classification models, keeping CPU utilisation under 40% on constrained hardware.',
+        'Delivered NLP-focused AI applications for multiple clients, covering data cleaning, feature extraction, and model deployment.',
+      ],
     },
     {
       title: 'Conversation Designer Intern',
       company: 'Comportement Software Pvt Ltd',
       period: 'Jan 2025 - May 2025',
       description: [
-        'During my 4-month internship at Comportement, I actively contributed to the development of user-centric conversational AI experiences, applying design principles to enhance user interaction and understanding. This role significantly deepened my practical skills in crafting intuitive dialogue systems.',
+        'Contributed to the development of user-centric conversational AI experiences for tier-1 clients, applying design principles to enhance user interaction and understanding.',
       ],
       responsibilities: [
-        'Designed and Mapped Dialogue Flows: Collaborated with senior designers and AI engineers to create comprehensive dialogue trees and conversational scripts for their clients like Dreams11, ICICI and others.',
-        'Crafted Conversational Persona & Tone: Contributed to defining and maintaining a consistent, user-friendly conversational persona that aligned with project goals, ensuring empathetic and clear communication.',
-        'Assisted in User Testing & Iteration: Participated in user acceptance testing sessions, gathered feedback, and iterated on conversational designs to optimize clarity, usability, and user satisfaction.',
-        'Utilized Key Tools: Gained hands-on experience with industry-standard conversation design platforms and prototyping tools such as Google Dialogflow, Figma, Lucid, Haptic.',
-        'Learned Practical Deployment: Understood the end-to-end process from design to basic integration with backend systems, enhancing my comprehension of the AI pipeline.',
+        'Designed dialogue trees and conversational scripts for tier-1 clients Dream11 and ICICI, collaborating directly with senior engineers.',
+        'Ran UAT sessions to identify response-clarity gaps, iterating scripts until error rates dropped to acceptable thresholds.',
+        'Gained hands-on experience with industry-standard conversation design platforms and prototyping tools such as Google Dialogflow, Figma, Lucid, and Haptic.',
       ],
     },
   ]
@@ -83,19 +106,6 @@ export default function Experience() {
                       {desc}
                     </p>
                   ))}
-
-                  {exp.project && (
-                    <div className="mt-4 p-4 bg-[rgb(var(--muted))]/30 rounded-lg">
-                      <h4 className="font-semibold text-[rgb(var(--accent))] mb-2">
-                        Major Key Project: {exp.project.title}
-                      </h4>
-                      <ul className="space-y-2 text-sm">
-                        {exp.project.details.map((detail, i) => (
-                          <li key={i} className="leading-relaxed">• {detail}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
 
                   {exp.responsibilities && (
                     <ul className="space-y-2 text-sm mt-4">

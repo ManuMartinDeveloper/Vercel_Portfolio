@@ -31,11 +31,11 @@ export default function About() {
               </p>
 
               <p>
-                Though at the start of my professional career, my drive to master the AI/ML domain is immense. I excel at 
-                developing smart AI agents and applications that offer intuitive user experiences, focusing my expertise in IoT, 
-                Computer Vision, and Natural Language Processing on one goal: transforming complex data into innovative, efficient, 
-                and accessible solutions. My work is consistently guided by ethical principles, aiming to foster positive change, 
-                particularly for underserved communities and pressing global challenges.
+                Today, as a Software Engineer and AI Specialist, I connect production-grade ML models to Java/Spring Boot and
+                Python backends — shipping reactive REST APIs, computer vision pipelines on edge hardware, and LLM-powered
+                automation that has reduced manual workloads by 70&ndash;90%. I&apos;m comfortable owning full-stack features
+                end-to-end and mentoring junior developers through technical transitions, with my work consistently guided by
+                ethical principles and a focus on positive, human-centred impact.
               </p>
 
               <p>

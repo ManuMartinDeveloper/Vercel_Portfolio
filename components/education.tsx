@@ -16,7 +16,8 @@ export default function Education() {
         'Deep Learning',
         'Cloud Computing',
       ],
-      thesis: 'Religious Sentiment Analysis using Large Language Models',
+      thesis:
+        'Emotion and sentiment analysis of the King James Bible (KJV) using NLP — mapped word-level emotional tone across all 66 books using tokenisation, frequency analysis, and lexicon-based sentiment scoring to surface patterns in biblical language.',
       skills: [
         'Internet of Things (IoT) Integration',
         'Computer Vision Applications',
@@ -47,7 +48,8 @@ export default function Education() {
         'Web Development (HTML, CSS, Flask)',
         'Internet of Things (IoT)',
       ],
-      project: 'FarmChat - A Chatbot integrated with IoT devices for smart farming solutions',
+      project:
+        'IoT FarmChat — Telegram bot integrated with IoT sensors to let farmers remotely control irrigation, switch grow lights for night farming, and monitor real-time soil moisture and environmental data from any location.',
       skills: [
         'Programming in Python, Java, C, SQL',
         'Data Structures and Algorithms',

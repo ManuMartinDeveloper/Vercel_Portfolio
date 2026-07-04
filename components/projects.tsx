@@ -12,6 +12,15 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "Research Ethical Clearance Portal (EREC)",
+      description:
+        "Full-stack automated clearance engine (Spring WebFlux + React) in active institutional use at Christ University. Auto-generates secure PDF certificates on final validation and enforces multi-stage compliance workflows, cutting average approval time from ~5 days to same-day.",
+      tech: ["Java", "Spring Boot", "Spring WebFlux", "React.js", "Material-UI", "Python", "GenAI"],
+      link: "https://github.com/ManuMartinDeveloper",
+      image: "/projects/erec-ethics-portal.png",
+      category: "AI/ML",
+    },
+    {
       title: "My Online Portfolio",
       description:
         "An interactive platform showcasing my expertise, projects, and professional journey in AI and Data Science. Built with Next.js, this portfolio demonstrates my skills in creating user-friendly interfaces and dynamic web content with time-based theme switching and animated interactions.",
@@ -21,27 +30,29 @@ export default function Projects() {
       category: "Web Development",
     },
     {
-      title: "Alphonso - Smart Content Filter",
+      title: "Alphonso - On-Device AI Content Filter",
       description:
-        "An Android accessibility service using on-device AI to analyze screen content in real-time for sensitive imagery. Features smart strike system, lockdown mechanisms, remote Firebase management, text blocking, and privacy-focused local processing with ONNX runtime and NudeNet 320n model.",
-      tech: ["Android", "AI/ML", "ONNX Runtime", "Firebase", "Accessibility Services", "NudeNet"],
+        "An Android accessibility service using on-device AI to screen content in real-time. Migrated the detection model from NudeNet 320n to YOLOv8, cutting inference latency by ~60% while keeping all processing on-device for privacy. Added Isolation Forest anomaly detection for smart lockdown of unusual usage patterns without cloud dependency.",
+      tech: ["Android", "YOLOv8", "ONNX Runtime", "Isolation Forest", "Firebase", "Accessibility Services"],
+      link: "https://github.com/ManuMartinDeveloper/Alphonso",
       image: "/projects/alphonso-content-filter.jpg",
       category: "AI/ML",
     },
     {
-      title: "Fr. Francis: Catholic Priest Chatbot",
+      title: "Fr. Francis: Catholic Priest AI Chatbot",
       description:
-        "A Streamlit application that simulates a chatbot capable of responding to user queries with the wisdom and compassion of a Catholic priest. Uses advanced NLP techniques and LLMs to provide spiritual guidance and answer questions about faith.",
+        "A Streamlit assistant built on LangChain with multi-source RAG over the Groq API, delivering sub-second theological query responses across a 50k+ document corpus. Simulates a chatbot capable of responding with the wisdom and compassion of a Catholic priest.",
       tech: ["Python", "Streamlit", "Transformers", "LangChain", "RAG", "Groq API"],
       link: "https://aiofgod.streamlit.app",
       image: "/projects/spiritual-chatbot-interface.jpg",
       category: "AI/ML",
     },
     {
-      title: "Eva - Automated Job Seeking Assistant",
+      title: "Eva - Automated Job-Seeking Assistant",
       description:
-        "An intelligent AI agent that automates the job search process, helping users find relevant opportunities, optimize resumes, and manage applications efficiently using natural language processing and machine learning.",
-      tech: ["Python", "NLP", "AI Agents", "Automation", "LangChain"],
+        "A multi-agent pipeline that scans job boards, scores listings against a resume, and logs pipeline state automatically — reducing manual tracking overhead by 70%. Built with natural language processing and machine learning for efficient, hands-off job hunting.",
+      tech: ["Python", "Multi-Agent Systems", "NLP", "Automation", "LangChain"],
+      link: "https://github.com/ManuMartinDeveloper/Eva-AI-Job-Butler",
       image: "/projects/job-search-ai-assistant.jpg",
       category: "AI/ML",
     },
@@ -54,10 +65,10 @@ export default function Projects() {
       category: "AI/ML",
     },
     {
-      title: "Smart Blind Stick using YOLO and Raspberry Pi",
+      title: "Smart Blind Stick - YOLO + Raspberry Pi",
       description:
-        "A prototype that uses YOLO for real-time object detection and Raspberry Pi for processing. Assists visually impaired individuals by detecting obstacles and providing audio feedback, integrating computer vision with IoT for assistive technology.",
-      tech: ["Python", "Computer Vision", "YOLO", "Raspberry Pi", "OpenCV"],
+        "Embedded YOLOv5 object-detection on Raspberry Pi with an audio feedback loop; processes spatial hazards in real time to assist visually impaired navigation, integrating computer vision with IoT for assistive technology.",
+      tech: ["Python", "Computer Vision", "YOLOv5", "Raspberry Pi", "OpenCV"],
       image: "/projects/smart-blind-stick-device.jpg",
       category: "IoT",
     },
@@ -182,7 +193,7 @@ export default function Projects() {
                     >
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
-                        View Live Demo
+                        {project.link.includes("github.com") ? "View on GitHub" : "View Live Demo"}
                       </a>
                     </Button>
                   )}
