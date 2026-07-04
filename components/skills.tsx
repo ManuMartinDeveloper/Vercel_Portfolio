@@ -64,15 +64,28 @@ export default function Skills() {
                   <h3 className="text-2xl font-bold">{category.title}</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {category.skills.map((skill, i) => (
                     <div key={i}>
                       {skill.category && (
-                        <h4 className="font-semibold text-[rgb(var(--accent))] mb-1 text-sm">
+                        <h4 className="font-semibold text-[rgb(var(--accent))] mb-2 text-sm">
                           {skill.category}
                         </h4>
                       )}
-                      <p className="text-sm leading-relaxed">{skill.items}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {skill.items
+                          .split(',')
+                          .map((item) => item.trim())
+                          .filter(Boolean)
+                          .map((item, j) => (
+                            <span
+                              key={j}
+                              className="text-xs px-3 py-1 bg-[rgb(var(--primary))]/10 text-[rgb(var(--primary))] rounded-full font-medium border border-[rgb(var(--primary))]/10"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                      </div>
                     </div>
                   ))}
                 </div>

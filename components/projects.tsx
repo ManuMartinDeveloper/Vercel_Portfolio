@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ExternalLink, FileText } from "lucide-react"
+import { ExternalLink, FileText, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import PDFViewer from "./pdf-viewer"
@@ -11,6 +11,15 @@ export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All")
 
   const projects = [
+    {
+      title: "EREC",
+      description:
+        "A featured flagship project — an end-to-end platform combining AI and modern web technologies to deliver an intelligent, user-centric experience. EREC showcases production-grade engineering across the full stack, from data processing and model integration to a polished front-end interface.",
+      tech: ["Next.js", "React", "TypeScript", "AI/ML", "Python"],
+      image: "/projects/erec.jpg",
+      category: "AI/ML",
+      featured: true,
+    },
     {
       title: "My Online Portfolio",
       description:
@@ -135,6 +144,12 @@ export default function Projects() {
                 className="group bg-[rgb(var(--card))] rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10 overflow-hidden"
               >
                 <div className="relative h-48 overflow-hidden bg-[rgb(var(--muted))]">
+                  {project.featured && (
+                    <span className="absolute top-3 left-3 z-10 flex items-center gap-1 rounded-full bg-[rgb(var(--primary))] px-3 py-1 text-xs font-semibold text-[rgb(var(--primary-foreground))] shadow-lg">
+                      <Star className="h-3 w-3 fill-current" />
+                      Featured
+                    </span>
+                  )}
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}

@@ -9,8 +9,16 @@ export default function Experience() {
 
   const experiences = [
     {
+      title: 'Associate Software Engineer',
+      company: 'Iolite Technologies',
+      period: 'Apr 2026 - Present',
+      description: [
+        'Joined Iolite Technologies as an Associate Software Engineer, contributing to the design, development, and delivery of production software. I collaborate across the engineering team to build reliable, scalable solutions while continuing to apply my background in AI and data-driven development.',
+      ],
+    },
+    {
       title: 'Freelancing',
-      company: 'MR Technologies',
+      company: 'Self-employed / Freelance',
       period: 'May 2025 - Present',
       description: [
         'Leveraging my expertise in Human-Centric AI, NLP, and Data Science, I actively engage in freelance projects to deliver innovative and impactful solutions. My work focuses on translating complex data into actionable insights and building intelligent applications that address real-world challenges, particularly those with a social or humanitarian impact.',

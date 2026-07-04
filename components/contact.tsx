@@ -98,12 +98,9 @@ export default function Contact() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[rgb(var(--primary))] flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-medium">Address</p>
+                    <p className="font-medium">Location</p>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Manu Martin<br />
-                      Puthenchirayil House<br />
-                      Srambikal, Thycattussery<br />
-                      Alappuzha, Kerala, India - 688528
+                      Perth, WA (Relocating Aug 2026)
                     </p>
                   </div>
                 </div>

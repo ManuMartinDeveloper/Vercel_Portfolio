@@ -4,6 +4,7 @@ import Skills from "@/components/skills"
 import TechStackVisualization from "@/components/tech-stack-visualization"
 import Experience from "@/components/experience"
 import Projects from "@/components/projects"
+import Certifications from "@/components/certifications"
 import GitHubIntegration from "@/components/github-integration"
 import Contact from "@/components/contact"
 import MobileNav from "@/components/mobile-nav"
@@ -21,6 +22,7 @@ export default function Home() {
         <TechStackVisualization />
         <Experience />
         <Projects />
+        <Certifications />
         <GitHubIntegration />
         <Contact />
       </main>

@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, MapPin, BadgeCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
@@ -22,7 +22,18 @@ export default function Hero() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Human-Centric AI | NLP & Data Science | Lifelong Learner
+                Software Engineer &amp; AI Specialist
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2 text-sm">
+              <p className="inline-flex items-center gap-2 text-muted-foreground">
+                <MapPin className="h-4 w-4 text-[rgb(var(--primary))] flex-shrink-0" />
+                Perth, WA (Relocating Aug 2026)
+              </p>
+              <p className="inline-flex items-center gap-2 font-medium text-[rgb(var(--primary))]">
+                <BadgeCheck className="h-4 w-4 flex-shrink-0" />
+                MATES Visa (Subclass 403) — Unrestricted Work Rights — No Sponsorship Required
               </p>
             </div>
             
