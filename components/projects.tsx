@@ -64,6 +64,14 @@ export default function Projects() {
       category: "AI/ML",
     },
     {
+      title: "Smart Medicine Kit with Gesture Recognition",
+      description:
+        "A prototype smart medicine kit that uses Computer Vision and gesture recognition to confirm patients are taking their medication. Real-time image processing and a custom gesture classification model identify medication-taking actions, improving adherence for elderly patients and providing non-intrusive peace of mind to caregivers.",
+      tech: ["Python", "OpenCV", "TensorFlow", "Computer Vision", "Raspberry Pi"],
+      image: "/projects/smart-medicine-kit.jpg",
+      category: "AI/ML",
+    },
+    {
       title: "Smart Blind Stick using YOLO and Raspberry Pi",
       description:
         "A prototype that uses YOLO for real-time object detection and Raspberry Pi for processing. Assists visually impaired individuals by detecting obstacles and providing audio feedback, integrating computer vision with IoT for assistive technology.",
