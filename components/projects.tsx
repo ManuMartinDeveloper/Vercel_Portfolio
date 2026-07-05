@@ -21,7 +21,6 @@ export default function Projects() {
       image: "/projects/erec.jpg",
       category: "Web Development",
       featured: true,
-      github: "https://github.com/ManuMartinDeveloper/EREC",
     },
     {
       title: "My Online Portfolio",
