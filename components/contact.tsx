@@ -1,11 +1,40 @@
 'use client'
 
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react'
+import { useState } from 'react'
+import { Mail, Phone, MapPin, Linkedin, Github, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { confetti } from '@/lib/confetti'
+
+type Status = 'idle' | 'sending' | 'success' | 'error'
 
 export default function Contact() {
+  const [status, setStatus] = useState<Status>('idle')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const params = new URLSearchParams()
+    new FormData(form).forEach((value, key) => params.append(key, String(value)))
+
+    setStatus('sending')
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/manu.reshma.martin@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: params,
+      })
+      if (!res.ok) throw new Error('Request failed')
+      setStatus('success')
+      form.reset()
+      confetti({ y: window.innerHeight * 0.55 })
+      window.dispatchEvent(new CustomEvent('portfolio:celebrate'))
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section id="contact" className="py-20 px-4">
       <div className="container max-w-6xl">
@@ -25,6 +54,7 @@ export default function Contact() {
             <form
               action="https://formsubmit.co/manu.reshma.martin@gmail.com"
               method="POST"
+              onSubmit={handleSubmit}
               className="space-y-4"
             >
               <input type="hidden" name="_captcha" value="false" />
@@ -61,11 +91,24 @@ export default function Contact() {
 
               <Button
                 type="submit"
+                disabled={status === 'sending'}
                 className="w-full bg-[rgb(var(--primary))] hover:bg-[rgb(var(--accent))] text-white"
                 size="lg"
               >
-                Send Message
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
               </Button>
+
+              {status === 'success' && (
+                <p className="flex items-center gap-2 rounded-lg bg-[rgb(var(--primary))]/10 px-4 py-3 text-sm font-medium text-[rgb(var(--primary))] animate-fade-in">
+                  <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                  Thanks! Your message is on its way — Manu will get back to you soon. 🎉
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm font-medium text-red-500">
+                  Something went wrong. Please email manu.reshma.martin@gmail.com directly.
+                </p>
+              )}
             </form>
           </div>
 

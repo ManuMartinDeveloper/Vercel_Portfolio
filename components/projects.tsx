@@ -5,6 +5,8 @@ import { ExternalLink, FileText, Star, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import PDFViewer from "./pdf-viewer"
+import { confetti } from "@/lib/confetti"
+import { tiltMove, tiltReset } from "@/lib/tilt"
 
 export default function Projects() {
   const [isPDFOpen, setIsPDFOpen] = useState(false)
@@ -150,7 +152,10 @@ export default function Projects() {
             {filteredProjects.map((project, index) => (
               <div
                 key={index}
-                className="group bg-[rgb(var(--card))] rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10 overflow-hidden"
+                onMouseMove={tiltMove}
+                onMouseLeave={tiltReset}
+                style={{ transition: "transform 0.2s ease-out" }}
+                className="group bg-[rgb(var(--card))] rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-[rgb(var(--primary))]/10 overflow-hidden"
               >
                 <div className="relative h-48 overflow-hidden bg-[rgb(var(--muted))]">
                   {project.featured && (
@@ -204,7 +209,12 @@ export default function Projects() {
                       variant="outline"
                       className="w-full group/btn border-[rgb(var(--primary))]/20 hover:border-[rgb(var(--primary))]/40 bg-transparent"
                     >
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => confetti({ x: e.clientX, y: e.clientY, count: 60 })}
+                      >
                         <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                         View Live Demo
                       </a>
@@ -217,7 +227,12 @@ export default function Projects() {
                       variant="outline"
                       className="w-full group/btn border-[rgb(var(--primary))]/20 hover:border-[rgb(var(--primary))]/40 bg-transparent"
                     >
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => confetti({ x: e.clientX, y: e.clientY, count: 60 })}
+                      >
                         <Github className="w-4 h-4 mr-2" />
                         View Code
                       </a>

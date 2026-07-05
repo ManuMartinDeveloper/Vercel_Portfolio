@@ -1,10 +1,27 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { ArrowRight, MapPin, BadgeCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Typewriter from '@/components/typewriter'
+
+function timeGreeting() {
+  const h = new Date().getHours()
+  if (h < 12) return 'Good morning'
+  if (h < 17) return 'Good afternoon'
+  if (h < 21) return 'Good evening'
+  return 'Hello, night owl'
+}
 
 export default function Hero() {
+  // Start with a neutral greeting on the server, then personalise by local time
+  // after mount to avoid a hydration mismatch.
+  const [greeting, setGreeting] = useState('Hello')
+  useEffect(() => {
+    setGreeting(timeGreeting())
+  }, [])
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -16,13 +33,20 @@ export default function Hero() {
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-2">
               <h1 className="text-5xl md:text-7xl font-bold text-balance leading-tight">
-                Hello, I'm{' '}
+                {greeting}, I'm{' '}
                 <span className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] bg-clip-text text-transparent">
                   Manu Martin
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Software Engineer &amp; AI Specialist
+              <p className="text-xl md:text-2xl text-muted-foreground font-medium min-h-[2.25rem]">
+                <Typewriter
+                  words={[
+                    'Software Engineer & AI Specialist',
+                    'AI & Machine Learning Specialist',
+                    'Full-Stack Developer',
+                    'Turns ☕ into clean code',
+                  ]}
+                />
               </p>
             </div>
 

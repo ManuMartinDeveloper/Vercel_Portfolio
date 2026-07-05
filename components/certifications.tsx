@@ -1,6 +1,8 @@
 "use client"
 
 import { Award } from "lucide-react"
+import { confetti } from "@/lib/confetti"
+import { tiltMove, tiltReset } from "@/lib/tilt"
 
 /**
  * Certifications — verified Credly badges.
@@ -58,7 +60,11 @@ export default function Certifications() {
               href={cert.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center text-center bg-[rgb(var(--card))] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-[rgb(var(--primary))]/10"
+              onMouseMove={tiltMove}
+              onMouseLeave={tiltReset}
+              onClick={(e) => confetti({ x: e.clientX, y: e.clientY, count: 70 })}
+              style={{ transition: "transform 0.2s ease-out" }}
+              className="group flex flex-col items-center text-center bg-[rgb(var(--card))] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all border border-[rgb(var(--primary))]/10"
             >
               <div className="w-28 h-28 mb-4 flex items-center justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

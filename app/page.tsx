@@ -9,12 +9,14 @@ import GitHubIntegration from "@/components/github-integration"
 import Contact from "@/components/contact"
 import MobileNav from "@/components/mobile-nav"
 import SmartCharacters from "@/components/smart-characters"
+import EasterEggs from "@/components/easter-eggs"
 
 export default function Home() {
   return (
     <>
       <MobileNav />
       <SmartCharacters />
+      <EasterEggs />
       <main className="min-h-screen">
         <Hero />
         <Education />

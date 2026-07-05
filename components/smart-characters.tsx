@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Button } from '@/components/ui/button'
+import { confetti } from '@/lib/confetti'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +12,33 @@ import {
 
 type Emotion = 'happy' | 'excited' | 'curious' | 'sad' | 'surprised' | 'focused' | 'playful'
 type Theme = 'morning' | 'afternoon' | 'evening' | 'night' | 'auto'
+
+// The four mascots, in render order: coral, plum, peach, yellow.
+const NAMES = ['Rosa', 'Vio', 'Poco', 'Sunny']
+const CLICK_LINES = [
+  'Hehe, that tickles!',
+  'Hi there! 😄',
+  'Boop! 💜',
+  'You found me!',
+  'We like you!',
+  '*happy wiggle*',
+]
+const SECTION_LINES: Record<string, string> = {
+  hero: "Hi! So glad you're here 👋",
+  education: 'Top of the class in curiosity 🎓',
+  skills: "We've got a tag for everything 🏷️",
+  experience: 'Look how far we have come 🚀',
+  projects: 'Ooh, EREC is our favourite 👀',
+  certifications: 'Shiny badges — click one! ✨',
+  contact: 'Say hi, Manu reads them all 💌',
+}
+// Approx head positions (x = centre, y = from stage top) for floating hearts.
+const HEADS = [
+  { x: 85, y: 20 },
+  { x: 162, y: 74 },
+  { x: 61, y: 134 },
+  { x: 239, y: 112 },
+]
 
 // ============================================================================
 // EYE-TRACKING HELPERS (ported from the login page characters)
@@ -83,7 +111,7 @@ function useBlink(minMs = 3000, rangeMs = 4000) {
 function Pupil({
   size = 9,
   maxDistance = 5,
-  pupilColor = '#2D2D2D',
+  pupilColor = '#3A2E2A',
   mouse,
   forceLookX,
   forceLookY,
@@ -115,12 +143,14 @@ function Pupil({
   )
 }
 
+// A soft, rounded eye with a white sclera, a tracking pupil and a tiny catch-light
+// highlight for a friendly, dimensional look.
 function EyeBall({
   size = 16,
   pupilSize = 6,
   maxDistance = 5,
-  eyeColor = 'white',
-  pupilColor = '#2D2D2D',
+  eyeColor = '#FFFFFF',
+  pupilColor = '#3A2E2A',
   isBlinking = false,
   scale = 1,
   mouse,
@@ -155,12 +185,14 @@ function EyeBall({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        boxShadow: 'inset 0 -2px 3px rgba(0,0,0,0.12)',
         transition: 'all 0.15s',
       }}
     >
       {!isBlinking && (
         <div
           style={{
+            position: 'relative',
             width: pupilSize * scale,
             height: pupilSize * scale,
             borderRadius: '50%',
@@ -168,37 +200,183 @@ function EyeBall({
             transform: `translate(${p.x}px, ${p.y}px)`,
             transition: 'transform 0.1s ease-out',
           }}
-        />
+        >
+          <div
+            style={{
+              position: 'absolute',
+              top: '12%',
+              right: '14%',
+              width: Math.max(2, pupilSize * scale * 0.34),
+              height: Math.max(2, pupilSize * scale * 0.34),
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255,255,255,0.9)',
+            }}
+          />
+        </div>
       )}
     </div>
   )
 }
 
+// Rosy cheeks — two soft blush ovals that add warmth to a face.
+function Cheeks({
+  left,
+  top,
+  gap,
+  color,
+}: {
+  left: number
+  top: number
+  gap: number
+  color: string
+}) {
+  return (
+    <div style={{ position: 'absolute', display: 'flex', gap, left, top }}>
+      {[0, 1].map((i) => (
+        <div
+          key={i}
+          style={{
+            width: 13,
+            height: 8,
+            borderRadius: '50%',
+            backgroundColor: color,
+            filter: 'blur(1.5px)',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Friendly SVG mouth — a smile that becomes an "o" when surprised and flips to a
+// gentle frown when sad.
+function Mouth({
+  width,
+  left,
+  top,
+  emotion,
+  color = '#5A463E',
+}: {
+  width: number
+  left: number
+  top: number
+  emotion: Emotion
+  color?: string
+}) {
+  const h = Math.round(width * 0.5)
+  if (emotion === 'surprised') {
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: left + width / 2 - 6,
+          top,
+          width: 13,
+          height: 15,
+          borderRadius: '50%',
+          backgroundColor: color,
+          transition: 'all 0.3s ease-out',
+        }}
+      />
+    )
+  }
+  const sad = emotion === 'sad'
+  const d = sad
+    ? `M3 ${h - 2} Q ${width / 2} 0 ${width - 3} ${h - 2}`
+    : `M3 2 Q ${width / 2} ${h} ${width - 3} 2`
+  return (
+    <svg
+      width={width}
+      height={h}
+      style={{ position: 'absolute', left, top, overflow: 'visible', transition: 'all 0.3s ease-out' }}
+    >
+      <path d={d} fill="none" stroke={color} strokeWidth={3} strokeLinecap="round" />
+    </svg>
+  )
+}
+
 // ============================================================================
-// CHARACTER STAGE — pink, black, orange, yellow (from the login page)
+// CHARACTER STAGE — warm, soft-3D clay versions of the login-page characters
 // ============================================================================
+
+// Volume shading: a light source from the upper-left fading to a darker base,
+// plus inset highlight/shadow and a soft drop shadow — the "clay" look.
+function body3D(hi: string, base: string, shade: string): CSSProperties {
+  return {
+    backgroundImage: `radial-gradient(120% 100% at 32% 16%, ${hi} 0%, ${base} 48%, ${shade} 100%)`,
+    boxShadow:
+      'inset 0 9px 15px rgba(255,255,255,0.4), inset 0 -18px 26px rgba(0,0,0,0.14), 0 12px 22px rgba(0,0,0,0.18)',
+  }
+}
+
+const CHEEK = 'rgba(255,110,125,0.42)'
+const MOUTH = '#5A463E'
 
 function CharacterStage({
   emotion,
   theme,
+  section,
 }: {
   emotion: Emotion
   theme: string
+  section: string
 }) {
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
-  const isPinkBlinking = useBlink(3000, 4000)
-  const isBlackBlinking = useBlink(2500, 4500)
+  const isCoralBlink = useBlink(3000, 4000)
+  const isPlumBlink = useBlink(2500, 4500)
+  const isPeachBlink = useBlink(3500, 3500)
+  const isYellowBlink = useBlink(2800, 5000)
   const [isLookingAtEachOther, setIsLookingAtEachOther] = useState(false)
 
-  const [pinkRef, pinkCenter] = useElementCenter()
-  const [blackRef, blackCenter] = useElementCenter()
-  const [orangeRef, orangeCenter] = useElementCenter()
+  // --- Interaction state (clicks, hearts, speech, celebration) ---
+  const [speech, setSpeech] = useState<string | null>(null)
+  const [hearts, setHearts] = useState<{ id: number; i: number }[]>([])
+  const [hopIndex, setHopIndex] = useState<number | null>(null)
+  const [partying, setPartying] = useState(false)
+  const clickedRef = useRef<Set<number>>(new Set())
+  const heartId = useRef(0)
+  const speechTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hopTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const [coralRef, coralCenter] = useElementCenter()
+  const [plumRef, plumCenter] = useElementCenter()
+  const [peachRef, peachCenter] = useElementCenter()
   const [yellowRef, yellowCenter] = useElementCenter()
+
+  const speak = (text: string) => {
+    setSpeech(text)
+    if (speechTimer.current) clearTimeout(speechTimer.current)
+    speechTimer.current = setTimeout(() => setSpeech(null), 3600)
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY })
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  // Speak a friendly line when the visitor enters a new section.
+  useEffect(() => {
+    if (section && SECTION_LINES[section]) speak(SECTION_LINES[section])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [section])
+
+  // Celebrate on demand (contact form submit, Konami code, etc.).
+  useEffect(() => {
+    const onCelebrate = () => {
+      setPartying(true)
+      speak('🎉 Woohoo!')
+      setTimeout(() => setPartying(false), 1200)
+    }
+    window.addEventListener('portfolio:celebrate', onCelebrate as EventListener)
+    return () => window.removeEventListener('portfolio:celebrate', onCelebrate as EventListener)
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (speechTimer.current) clearTimeout(speechTimer.current)
+      if (hopTimer.current) clearTimeout(hopTimer.current)
+    }
   }, [])
 
   // When curious/playful, the characters glance at each other periodically.
@@ -228,6 +406,29 @@ function CharacterStage({
     }
   }, [emotion])
 
+  const handleCharClick = (i: number) => {
+    // Hop the clicked character.
+    setHopIndex(i)
+    if (hopTimer.current) clearTimeout(hopTimer.current)
+    hopTimer.current = setTimeout(() => setHopIndex(null), 520)
+
+    // Pop a floating heart.
+    const id = heartId.current++
+    setHearts((h) => [...h, { id, i }])
+    setTimeout(() => setHearts((h) => h.filter((x) => x.id !== id)), 1000)
+
+    speak(`${NAMES[i]}: ${CLICK_LINES[(Math.random() * CLICK_LINES.length) | 0]}`)
+
+    // Easter egg: greet everyone who clicks all four.
+    clickedRef.current.add(i)
+    if (clickedRef.current.size === 4) {
+      setTimeout(() => {
+        speak("🎉 You found all four of us — you're awesome!")
+        confetti({ y: window.innerHeight * 0.45 })
+      }, 250)
+    }
+  }
+
   const isSad = emotion === 'sad'
   const isExcited = emotion === 'excited'
   const isSurprised = emotion === 'surprised'
@@ -237,19 +438,31 @@ function CharacterStage({
 
   // Sad: everyone looks down. Looking at each other: converge inward.
   const sadLook = { x: 0, y: 4 }
-  const eyeScale = isSurprised ? 1.3 : 1
+  const eyeScale = isSurprised ? 1.25 : 1
 
-  const dim =
-    isSad ? 'brightness(0.65) saturate(0.7)' : theme === 'night' || theme === 'evening' ? 'brightness(0.9)' : 'none'
+  // Keep dimming mild so the clay gradients don't turn muddy.
+  const dim = isSad
+    ? 'brightness(0.85) saturate(0.85)'
+    : theme === 'night' || theme === 'evening'
+      ? 'brightness(0.95)'
+      : 'none'
 
-  const bounce = (delay: string): CSSProperties =>
-    isExcited ? { animation: `sc-bounce 0.6s ease-in-out ${delay} infinite` } : {}
+  // Idle: gentle breathing. Excited: springy bounce. Clicked / partying: hop.
+  const idleAnim = (i: number, delay: string): CSSProperties => {
+    if (partying) return { animation: `sc-hop 0.5s ease-in-out ${delay} 2` }
+    if (hopIndex === i) return { animation: 'sc-hop 0.5s ease-in-out' }
+    return isExcited
+      ? { animation: `sc-bounce 0.6s ease-in-out ${delay} infinite` }
+      : { animation: `sc-breathe 4s ease-in-out ${delay} infinite` }
+  }
 
-  const droop: CSSProperties = isSad ? { translate: '0 14px' } : {}
+  const droop: CSSProperties = isSad ? { translate: '0 12px' } : {}
 
   const charBase: CSSProperties = {
     position: 'absolute',
     bottom: 0,
+    cursor: 'pointer',
+    pointerEvents: 'auto',
     transformOrigin: 'bottom center',
     transition: 'transform 0.7s ease-in-out, height 0.7s ease-in-out, filter 0.7s ease-in-out',
     filter: dim,
@@ -260,24 +473,135 @@ function CharacterStage({
       <style>{`
         @keyframes sc-bounce {
           0%, 100% { margin-bottom: 0; }
-          50% { margin-bottom: 18px; }
+          50% { margin-bottom: 16px; }
+        }
+        @keyframes sc-breathe {
+          0%, 100% { scale: 1 1; }
+          50% { scale: 1.015 1.03; }
+        }
+        @keyframes sc-hop {
+          0%, 100% { translate: 0 0; }
+          35% { translate: 0 -22px; }
+          70% { translate: 0 0; }
+        }
+        @keyframes sc-heart {
+          0% { opacity: 0; transform: translateY(0) scale(0.6); }
+          25% { opacity: 1; }
+          100% { opacity: 0; transform: translateY(-42px) scale(1.1); }
+        }
+        @keyframes sc-pop {
+          0% { opacity: 0; transform: translateX(-50%) translateY(6px) scale(0.85); }
+          100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
         }
       `}</style>
 
-      {/* Pink/red — back layer */}
+      {/* Speech bubble */}
+      {speech && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: -46,
+            transform: 'translateX(-50%)',
+            maxWidth: 210,
+            padding: '8px 12px',
+            borderRadius: 14,
+            fontSize: 12.5,
+            lineHeight: 1.35,
+            fontWeight: 500,
+            textAlign: 'center',
+            backgroundColor: 'rgb(var(--card))',
+            color: 'rgb(var(--foreground))',
+            border: '1px solid rgb(var(--primary) / 0.18)',
+            boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
+            zIndex: 30,
+            pointerEvents: 'none',
+            animation: 'sc-pop 0.25s ease-out',
+          }}
+        >
+          {speech}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: -5,
+              left: '50%',
+              transform: 'translateX(-50%) rotate(45deg)',
+              width: 10,
+              height: 10,
+              backgroundColor: 'rgb(var(--card))',
+              borderRight: '1px solid rgb(var(--primary) / 0.18)',
+              borderBottom: '1px solid rgb(var(--primary) / 0.18)',
+            }}
+          />
+        </div>
+      )}
+
+      {/* Floating hearts */}
+      {hearts.map((ht) => (
+        <div
+          key={ht.id}
+          style={{
+            position: 'absolute',
+            left: HEADS[ht.i].x,
+            top: HEADS[ht.i].y,
+            fontSize: 18,
+            zIndex: 25,
+            pointerEvents: 'none',
+            animation: 'sc-heart 1s ease-out forwards',
+          }}
+        >
+          ❤️
+        </div>
+      ))}
+
+      {/* Warm glow behind the group */}
       <div
-        ref={pinkRef}
+        style={{
+          position: 'absolute',
+          bottom: 24,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 250,
+          height: 190,
+          background: 'radial-gradient(circle, rgba(255,160,120,0.22), transparent 70%)',
+          filter: 'blur(26px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Soft contact shadow on the ground */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: -4,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 250,
+          height: 26,
+          background: 'rgba(0,0,0,0.22)',
+          borderRadius: '50%',
+          filter: 'blur(9px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Coral — back layer */}
+      <div
+        ref={coralRef}
+        onClick={() => handleCharClick(0)}
         style={{
           ...charBase,
           left: 44,
           width: 100,
           height: emotion === 'curious' ? 250 : 232,
-          backgroundColor: '#FF4D6D',
-          borderRadius: '8px 8px 0 0',
+          borderRadius: '50px 50px 20px 20px',
           zIndex: 1,
-          transform: `skewX(${leanSkew(pinkCenter)}deg)`,
+          transform: `skewX(${leanSkew(coralCenter)}deg)`,
+          ...body3D('#FFA7B6', '#FF7189', '#EA506E'),
           ...droop,
-          ...bounce('0s'),
+          ...idleAnim(0, '0s'),
         }}
       >
         <div
@@ -285,18 +609,18 @@ function CharacterStage({
             position: 'absolute',
             display: 'flex',
             gap: 18,
-            left: isLookingAtEachOther ? 32 : 25,
-            top: isLookingAtEachOther ? 36 : 24,
+            left: isLookingAtEachOther ? 33 : 26,
+            top: isLookingAtEachOther ? 38 : 26,
             transition: 'all 0.7s ease-in-out',
           }}
         >
           {[0, 1].map((i) => (
             <EyeBall
               key={i}
-              size={14}
-              pupilSize={5}
+              size={15}
+              pupilSize={6}
               maxDistance={4}
-              isBlinking={isPinkBlinking}
+              isBlinking={isCoralBlink}
               scale={eyeScale}
               mouse={mouse}
               forceLookX={isSad ? sadLook.x : isLookingAtEachOther ? 2 : undefined}
@@ -304,24 +628,27 @@ function CharacterStage({
             />
           ))}
         </div>
+        <Cheeks left={16} top={50} gap={46} color={CHEEK} />
+        <Mouth width={30} left={35} top={52} emotion={emotion} color={MOUTH} />
       </div>
 
-      {/* Black — middle layer */}
+      {/* Plum — middle layer (was black; warmed to a friendly violet) */}
       <div
-        ref={blackRef}
+        ref={plumRef}
+        onClick={() => handleCharClick(1)}
         style={{
           ...charBase,
           left: 138,
           width: 66,
           height: 178,
-          backgroundColor: '#2D2D2D',
-          borderRadius: '7px 7px 0 0',
+          borderRadius: '33px 33px 14px 14px',
           zIndex: 2,
           transform: isLookingAtEachOther
-            ? `skewX(${leanSkew(blackCenter) * 1.5 + 8}deg) translateX(10px)`
-            : `skewX(${leanSkew(blackCenter) * 1.5}deg)`,
+            ? `skewX(${leanSkew(plumCenter) * 1.5 + 8}deg) translateX(10px)`
+            : `skewX(${leanSkew(plumCenter) * 1.5}deg)`,
+          ...body3D('#C9B6F2', '#9D82E0', '#7C60C6'),
           ...droop,
-          ...bounce('0.1s'),
+          ...idleAnim(1, '0.15s'),
         }}
       >
         <div
@@ -330,17 +657,17 @@ function CharacterStage({
             display: 'flex',
             gap: 13,
             left: isLookingAtEachOther ? 18 : 15,
-            top: isLookingAtEachOther ? 8 : 19,
+            top: isLookingAtEachOther ? 12 : 20,
             transition: 'all 0.7s ease-in-out',
           }}
         >
           {[0, 1].map((i) => (
             <EyeBall
               key={i}
-              size={12}
+              size={13}
               pupilSize={5}
               maxDistance={3}
-              isBlinking={isBlackBlinking}
+              isBlinking={isPlumBlink}
               scale={eyeScale}
               mouse={mouse}
               forceLookX={isSad ? sadLook.x : isLookingAtEachOther ? 0 : undefined}
@@ -348,104 +675,105 @@ function CharacterStage({
             />
           ))}
         </div>
+        <Cheeks left={9} top={40} gap={34} color={CHEEK} />
+        <Mouth width={24} left={21} top={42} emotion={emotion} color={MOUTH} />
       </div>
 
-      {/* Orange — front left semi-circle */}
+      {/* Peach — front left dome */}
       <div
-        ref={orangeRef}
+        ref={peachRef}
+        onClick={() => handleCharClick(2)}
         style={{
           ...charBase,
           left: 0,
           width: 140,
           height: 118,
-          backgroundColor: '#FF9B6B',
-          borderRadius: '70px 70px 0 0',
+          borderRadius: '70px 70px 24px 24px',
           zIndex: 3,
-          transform: `skewX(${leanSkew(orangeCenter)}deg)`,
+          transform: `skewX(${leanSkew(peachCenter)}deg)`,
+          ...body3D('#FFD2AC', '#FFB07C', '#F28E54'),
           ...droop,
-          ...bounce('0.2s'),
+          ...idleAnim(2, '0.3s'),
         }}
       >
         <div
           style={{
             position: 'absolute',
             display: 'flex',
-            gap: 19,
-            left: 48,
-            top: 52,
+            gap: 20,
+            left: 45,
+            top: 42,
             transition: 'all 0.2s ease-out',
           }}
         >
           {[0, 1].map((i) => (
-            <Pupil
+            <EyeBall
               key={i}
-              size={9}
+              size={16}
+              pupilSize={6}
               maxDistance={4}
+              isBlinking={isPeachBlink}
+              scale={eyeScale}
               mouse={mouse}
               forceLookX={isSad ? sadLook.x : undefined}
               forceLookY={isSad ? sadLook.y : undefined}
             />
           ))}
         </div>
+        <Cheeks left={38} top={70} gap={52} color={CHEEK} />
+        <Mouth width={32} left={54} top={70} emotion={emotion} color={MOUTH} />
       </div>
 
       {/* Yellow — front right rounded rectangle */}
       <div
         ref={yellowRef}
+        onClick={() => handleCharClick(3)}
         style={{
           ...charBase,
           left: 206,
           width: 84,
           height: 140,
-          backgroundColor: '#E8D754',
-          borderRadius: '42px 42px 0 0',
+          borderRadius: '42px 42px 16px 16px',
           zIndex: 4,
           transform: `skewX(${leanSkew(yellowCenter)}deg)`,
+          ...body3D('#FCE79E', '#F4C752', '#E1AD2F'),
           ...droop,
-          ...bounce('0.3s'),
+          ...idleAnim(3, '0.45s'),
         }}
       >
         <div
           style={{
             position: 'absolute',
             display: 'flex',
-            gap: 15,
-            left: 30,
-            top: 24,
+            gap: 16,
+            left: 27,
+            top: 30,
             transition: 'all 0.2s ease-out',
           }}
         >
           {[0, 1].map((i) => (
-            <Pupil
+            <EyeBall
               key={i}
-              size={9}
+              size={15}
+              pupilSize={6}
               maxDistance={4}
+              isBlinking={isYellowBlink}
+              scale={eyeScale}
               mouse={mouse}
               forceLookX={isSad ? sadLook.x : undefined}
               forceLookY={isSad ? sadLook.y : undefined}
             />
           ))}
         </div>
-        {/* Mouth line */}
-        <div
-          style={{
-            position: 'absolute',
-            width: isSurprised ? 20 : 50,
-            height: isSurprised ? 14 : 3,
-            backgroundColor: '#2D2D2D',
-            borderRadius: 999,
-            left: isSurprised ? 32 : 17,
-            top: 54,
-            transition: 'all 0.3s ease-out',
-          }}
-        />
+        <Cheeks left={18} top={56} gap={40} color={CHEEK} />
+        <Mouth width={30} left={27} top={58} emotion={emotion} color={MOUTH} />
       </div>
     </div>
   )
 }
 
 // ============================================================================
-// SECTION / IDLE / THEME AWARENESS (preserved from previous version)
+// SECTION / IDLE / THEME AWARENESS
 // ============================================================================
 
 function useEmotion() {
@@ -469,7 +797,7 @@ function useEmotion() {
     document.addEventListener('mouseenter', handleMouseEnter)
 
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'education', 'skills', 'experience', 'projects', 'contact']
+      const sections = ['hero', 'about', 'education', 'skills', 'experience', 'projects', 'certifications', 'contact']
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -500,8 +828,9 @@ function useEmotion() {
   else if (currentSection === 'contact') emotion = 'surprised'
   else if (currentSection === 'skills' || currentSection === 'education') emotion = 'curious'
   else if (currentSection === 'experience') emotion = 'playful'
+  else if (currentSection === 'certifications') emotion = 'excited'
 
-  return emotion
+  return { emotion, section: currentSection }
 }
 
 function useDetectedTheme() {
@@ -625,7 +954,7 @@ function ThemeSelector() {
 
 export default function SmartCharacters() {
   const [isClient, setIsClient] = useState(false)
-  const emotion = useEmotion()
+  const { emotion, section } = useEmotion()
   const theme = useDetectedTheme()
 
   useEffect(() => {
@@ -636,9 +965,9 @@ export default function SmartCharacters() {
 
   return (
     <div className="fixed bottom-0 right-4 z-50 hidden w-[300px] md:block">
-      <div className="pointer-events-none relative h-[280px] overflow-hidden">
+      <div className="pointer-events-none relative h-[280px]">
         <div className="absolute bottom-0 left-1/2 h-[260px] w-[290px] -translate-x-1/2">
-          <CharacterStage emotion={emotion} theme={theme} />
+          <CharacterStage emotion={emotion} theme={theme} section={section} />
         </div>
       </div>
 
