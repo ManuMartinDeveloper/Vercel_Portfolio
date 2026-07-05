@@ -30,9 +30,9 @@ export default function NotFound() {
             height: 190,
             borderRadius: '70px 70px 26px 26px',
             backgroundImage:
-              'radial-gradient(120% 100% at 32% 16%, #FFA7B6 0%, #FF7189 48%, #EA506E 100%)',
+              'radial-gradient(120% 100% at 32% 16%, #FFD9EC 0%, #FF7EC0 48%, #E23E9A 100%)',
             boxShadow:
-              'inset 0 10px 16px rgba(255,255,255,0.4), inset 0 -20px 28px rgba(0,0,0,0.14), 0 14px 24px rgba(0,0,0,0.18)',
+              'inset 0 10px 16px rgba(255,255,255,0.6), inset 0 -20px 28px rgba(0,0,0,0.14), 0 14px 24px rgba(0,0,0,0.18)',
           }}
         >
           {/* droopy eyes */}

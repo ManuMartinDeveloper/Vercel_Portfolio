@@ -12,7 +12,8 @@ type ConfettiOptions = {
   scalar?: number
 }
 
-const DEFAULT_COLORS = ['#FF7189', '#9D82E0', '#FFB07C', '#F4C752', '#8b5cf6', '#ffffff']
+// Swarovski-inspired crystal palette: rose, amethyst, aquamarine, citrine.
+const DEFAULT_COLORS = ['#FF7EC0', '#B07BE8', '#5FD2DA', '#FFD24A', '#8b5cf6', '#ffffff']
 
 export function confetti(options: ConfettiOptions = {}) {
   if (typeof window === 'undefined') return

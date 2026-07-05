@@ -305,7 +305,7 @@ function body3D(hi: string, base: string, shade: string): CSSProperties {
   return {
     backgroundImage: `radial-gradient(120% 100% at 32% 16%, ${hi} 0%, ${base} 48%, ${shade} 100%)`,
     boxShadow:
-      'inset 0 9px 15px rgba(255,255,255,0.4), inset 0 -18px 26px rgba(0,0,0,0.14), 0 12px 22px rgba(0,0,0,0.18)',
+      'inset 0 8px 14px rgba(255,255,255,0.6), inset 0 -18px 26px rgba(0,0,0,0.14), 0 12px 22px rgba(0,0,0,0.18)',
   }
 }
 
@@ -563,7 +563,7 @@ function CharacterStage({
           transform: 'translateX(-50%)',
           width: 250,
           height: 190,
-          background: 'radial-gradient(circle, rgba(255,160,120,0.22), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(190,205,255,0.22), transparent 70%)',
           filter: 'blur(26px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -599,7 +599,7 @@ function CharacterStage({
           borderRadius: '50px 50px 20px 20px',
           zIndex: 1,
           transform: `skewX(${leanSkew(coralCenter)}deg)`,
-          ...body3D('#FFA7B6', '#FF7189', '#EA506E'),
+          ...body3D('#FFD9EC', '#FF7EC0', '#E23E9A'), // Rose crystal
           ...droop,
           ...idleAnim(0, '0s'),
         }}
@@ -646,7 +646,7 @@ function CharacterStage({
           transform: isLookingAtEachOther
             ? `skewX(${leanSkew(plumCenter) * 1.5 + 8}deg) translateX(10px)`
             : `skewX(${leanSkew(plumCenter) * 1.5}deg)`,
-          ...body3D('#C9B6F2', '#9D82E0', '#7C60C6'),
+          ...body3D('#E3CCF7', '#B07BE8', '#7E45C6'), // Amethyst crystal
           ...droop,
           ...idleAnim(1, '0.15s'),
         }}
@@ -691,7 +691,7 @@ function CharacterStage({
           borderRadius: '70px 70px 24px 24px',
           zIndex: 3,
           transform: `skewX(${leanSkew(peachCenter)}deg)`,
-          ...body3D('#FFD2AC', '#FFB07C', '#F28E54'),
+          ...body3D('#D6F6F3', '#5FD2DA', '#249FB9'), // Aquamarine crystal
           ...droop,
           ...idleAnim(2, '0.3s'),
         }}
@@ -736,7 +736,7 @@ function CharacterStage({
           borderRadius: '42px 42px 16px 16px',
           zIndex: 4,
           transform: `skewX(${leanSkew(yellowCenter)}deg)`,
-          ...body3D('#FCE79E', '#F4C752', '#E1AD2F'),
+          ...body3D('#FFF1BA', '#FFD24A', '#E8A81E'), // Citrine crystal
           ...droop,
           ...idleAnim(3, '0.45s'),
         }}
